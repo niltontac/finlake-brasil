@@ -1,0 +1,37 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Data files (nunca commitar dados)
+data/
+*.parquet
+*.csv
+*.duckdb
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+# Airflow
+airflow/logs/
+airflow/plugins/__pycache__/
+
+# IDE
+.cursor/
+.vscode/
+*.DS_Store
+
+# Secrets
+*.key
+*.pem
+secrets/
