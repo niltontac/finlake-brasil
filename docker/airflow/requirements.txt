@@ -1,0 +1,18 @@
+# Dependências Python para pipelines FinLake Brasil
+# Instaladas na imagem customizada do Airflow via pip + constraints
+
+# Domínio Macro (BCB)
+python-bcb>=0.3.0
+
+# Processamento e serialização
+pandas>=2.0.0
+pyarrow>=14.0.0
+
+# Processamento analítico Gold
+duckdb>=0.10.0
+
+# Validação de dados
+pydantic>=2.0.0
+
+# Conectividade PostgreSQL
+psycopg2-binary>=2.9.0

@@ -1,0 +1,12 @@
+include:
+  - path: docker/compose.postgres.yml
+  - path: docker/compose.airflow.yml
+  - path: docker/compose.metabase.yml
+
+networks:
+  finlake-net:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local
