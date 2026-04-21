@@ -12,7 +12,10 @@ services:
       - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - type: bind
+        source: ./docker/postgres/init.sql
+        target: /docker-entrypoint-initdb.d/init.sql
+        read_only: true
     networks:
       - finlake-net
     healthcheck:
