@@ -1,7 +1,7 @@
 -include .env
 export
 
-.PHONY: up down logs ps reset test help
+.PHONY: up down logs ps reset test init-db help
 
 PROFILE ?= full
 
@@ -11,6 +11,15 @@ help: ## Exibe esta ajuda
 
 up: ## Sobe os serviços (PROFILE=core|orchestration|full, padrão: full)
 	docker compose --profile $(PROFILE) up -d
+
+init-db: ## Inicializa databases e schemas (executar após 'make up')
+	@echo "→ Criando database airflow_metadata..."
+	@docker exec finlake-postgres psql -U $(POSTGRES_USER) -c \
+		"CREATE DATABASE airflow_metadata;" 2>/dev/null || echo "  (já existe, ok)"
+	@echo "→ Criando schemas Medallion em finlake..."
+	@docker exec finlake-postgres psql -U $(POSTGRES_USER) -d $(POSTGRES_DB) -c \
+		"CREATE SCHEMA IF NOT EXISTS bronze; CREATE SCHEMA IF NOT EXISTS silver; CREATE SCHEMA IF NOT EXISTS gold;"
+	@echo "✓ Databases e schemas criados."
 
 down: ## Para todos os containers
 	docker compose down
