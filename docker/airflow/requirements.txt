@@ -16,3 +16,6 @@ pydantic>=2.0.0
 
 # Conectividade PostgreSQL
 psycopg2-binary>=2.9.0
+
+# Airflow Providers
+apache-airflow-providers-postgres
