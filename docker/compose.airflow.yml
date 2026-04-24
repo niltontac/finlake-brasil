@@ -17,11 +17,14 @@ services:
       _AIRFLOW_WWW_USER_PASSWORD: ${AIRFLOW_ADMIN_PASSWORD}
       AIRFLOW__LOGGING__LOGGING_LEVEL: INFO
       AIRFLOW_CONN_FINLAKE_POSTGRES: "${AIRFLOW_CONN_FINLAKE_POSTGRES}"
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
     ports:
       - "${AIRFLOW_PORT:-8080}:8080"
     volumes:
       - ../dags:/opt/airflow/dags
       - ../data:/opt/airflow/data
+      - ../transform:/opt/airflow/transform
     networks:
       - finlake-net
     depends_on:

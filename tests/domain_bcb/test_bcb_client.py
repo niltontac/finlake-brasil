@@ -5,11 +5,9 @@ from datetime import date, timedelta
 from unittest.mock import MagicMock, patch
 
 import pandas as pd
-import pytest
 
 from domain_bcb.ingestion.bcb_client import (
     SERIES_CONFIG,
-    SeriesConfig,
     fetch_series,
     get_load_range,
 )

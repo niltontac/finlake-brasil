@@ -119,8 +119,6 @@ def fetch_series(config: SeriesConfig, start: date, end: date) -> pd.DataFrame:
     A API BCB limita consultas de séries diárias a janelas de 10 anos.
     Esta função divide automaticamente o range em chunks e concatena os resultados.
     """
-    from dateutil.relativedelta import relativedelta
-
     CHUNK_YEARS = 9  # margem de segurança abaixo do limite de 10 anos
 
     chunks: list[pd.DataFrame] = []

@@ -11,3 +11,5 @@ COPY docker/airflow/requirements.txt /opt/airflow/requirements.txt
 RUN pip install --no-cache-dir \
     -r /opt/airflow/requirements.txt \
     --constraint "${CONSTRAINT_URL}"
+
+RUN pip install --no-cache-dir dbt-postgres

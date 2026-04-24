@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: bronze_bcb
+    database: finlake
+    schema: bronze_bcb
+    description: "Bronze layer — domínio BCB (Banco Central do Brasil). Dados brutos via python-bcb."
+    freshness:
+      warn_after: {count: 2, period: day}
+      error_after: {count: 7, period: day}
+    loaded_at_field: ingested_at
+    tables:
+      - name: selic_daily
+        description: "Taxa SELIC diária (série BCB SGS 11). Apenas dias úteis."
+      - name: ipca_monthly
+        description: "Variação mensal do IPCA (série BCB SGS 433). Primeiro dia do mês."
+      - name: ptax_daily
+        description: "Taxa PTAX venda USD/BRL diária (série BCB SGS 1). Apenas dias úteis."
