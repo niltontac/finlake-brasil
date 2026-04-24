@@ -1,0 +1,21 @@
+finlake:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 5433
+      user: "{{ env_var('POSTGRES_USER') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD') }}"
+      dbname: finlake
+      schema: silver_bcb
+      threads: 4
+    airflow:
+      type: postgres
+      host: postgres
+      port: 5432
+      user: "{{ env_var('POSTGRES_USER') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD') }}"
+      dbname: finlake
+      schema: silver_bcb
+      threads: 4

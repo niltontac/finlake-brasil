@@ -1,0 +1,82 @@
+version: 2
+
+models:
+  - name: selic_daily
+    description: >
+      SELIC diária com taxa anualizada via convenção BCB (252 dias úteis/ano).
+      Fórmula: (power(1 + taxa_diaria / 100.0, 252) - 1) * 100.
+    columns:
+      - name: date
+        description: "Data de referência (apenas dias úteis)"
+        tests:
+          - not_null
+          - unique
+      - name: taxa_diaria
+        description: "Taxa SELIC diária (% a.d., 6 casas decimais)"
+        tests:
+          - not_null
+      - name: taxa_anual
+        description: "Taxa SELIC anualizada (% a.a., 4 casas decimais). Convenção BCB: 252 d.u./ano."
+        tests:
+          - not_null
+      - name: source_api
+        tests:
+          - not_null
+      - name: transformed_at
+        tests:
+          - not_null
+
+  - name: ipca_monthly
+    description: >
+      IPCA mensal com acumulado 12 meses via produto encadeado EXP(SUM(LN())).
+      Comportamento esperado: acumulado_12m é NULL nos primeiros 11 meses
+      (1994-07 a 1995-05) — janela de 12 meses ainda incompleta.
+    columns:
+      - name: date
+        description: "Primeiro dia do mês de referência"
+        tests:
+          - not_null
+          - unique
+      - name: variacao_mensal
+        description: "Variação mensal do IPCA (%, 4 casas decimais)"
+        tests:
+          - not_null
+      - name: acumulado_12m
+        description: >
+          IPCA acumulado nos últimos 12 meses (%, 4 casas decimais).
+          NULL de 1994-07-01 a 1995-05-01 (primeiros 11 meses da série) — comportamento esperado por design.
+          Não-NULL a partir de 1995-06-01.
+      - name: source_api
+        tests:
+          - not_null
+      - name: transformed_at
+        tests:
+          - not_null
+
+  - name: ptax_daily
+    description: >
+      PTAX diária (R$/USD) com variação percentual em relação ao dia útil anterior.
+      Comportamento esperado: variacao_diaria_pct é NULL apenas no primeiro registro
+      histórico (1999-01-04), pois não há dia útil anterior disponível.
+      LAG opera naturalmente sobre dias úteis — fins de semana e feriados não existem
+      na tabela Bronze, portanto não há gap artificial no cálculo.
+    columns:
+      - name: date
+        description: "Data de referência (apenas dias úteis)"
+        tests:
+          - not_null
+          - unique
+      - name: taxa_cambio
+        description: "Taxa PTAX venda (R$/USD, 4 casas decimais)"
+        tests:
+          - not_null
+      - name: variacao_diaria_pct
+        description: >
+          Variação percentual diária da taxa de câmbio (%, 4 casas decimais).
+          NULL apenas no registro mais antigo (1999-01-04) — comportamento esperado por design.
+      - name: source_api
+        tests:
+          - not_null
+      - name: transformed_at
+        tests:
+          - not_null

@@ -12,7 +12,7 @@ import pytest
 pytest.importorskip("airflow", reason="Apache Airflow não instalado — rodar dentro do container.")
 
 from datetime import date
-from unittest.mock import MagicMock, call, patch
+from unittest.mock import MagicMock, patch
 
 import pandas as pd
 from airflow.exceptions import AirflowSkipException

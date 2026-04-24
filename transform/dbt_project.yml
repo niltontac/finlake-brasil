@@ -1,0 +1,16 @@
+name: finlake
+version: '1.0.0'
+config-version: 2
+
+profile: finlake
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  finlake:
+    domain_bcb:
+      +materialized: table

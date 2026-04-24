@@ -34,7 +34,11 @@ migrate: ## Executa migrations do PostgreSQL (requer 'make up PROFILE=core')
 	@echo "→ Executando migration 001_bronze_bcb (schema bronze_bcb + tabelas)..."
 	@docker exec -i finlake-postgres psql -U $(POSTGRES_USER) -d $(POSTGRES_DB) \
 		< docker/postgres/migrations/001_bronze_bcb.sql
-	@echo "✓ Migration bronze_bcb executada."
+	@echo "✓ Migration 001_bronze_bcb executada."
+	@echo "→ Executando migration 002_silver_bcb (schema silver_bcb)..."
+	@docker exec -i finlake-postgres psql -U $(POSTGRES_USER) -d $(POSTGRES_DB) \
+		< docker/postgres/migrations/002_silver_bcb.sql
+	@echo "✓ Migration 002_silver_bcb executada."
 
 reset: ## Para containers e remove volumes nomeados (dados do PostgreSQL são perdidos)
 	@echo "ATENÇÃO: Este comando remove todos os dados do PostgreSQL."
