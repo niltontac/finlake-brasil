@@ -36,3 +36,6 @@ airflow/plugins/__pycache__/
 *.key
 *.pem
 secrets/
+transform/.user.yml
+transform/target/
+transform/logs/
