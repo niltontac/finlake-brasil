@@ -14,3 +14,5 @@ models:
   finlake:
     domain_bcb:
       +materialized: table
+      gold:
+        +schema: gold_bcb

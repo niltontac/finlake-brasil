@@ -1,0 +1,81 @@
+version: 2
+
+models:
+  - name: macro_mensal
+    description: >
+      Métricas macroeconômicas mensais cross-série: SELIC real (taxa acima da inflação),
+      câmbio médio mensal e variação cambial MoM. Grain: primeiro dia do mês.
+      SSOT analítico — toda lógica de join e agregação cross-série está neste modelo.
+      macro_diario é derivado via ref() carry forward.
+      Comportamento esperado: ptax_variacao_mensal_pct é NULL apenas em 2000-01-01 (primeiro mês).
+    columns:
+      - name: date
+        description: "Primeiro dia do mês de referência (grain mensal)"
+        tests:
+          - not_null
+          - unique
+      - name: taxa_anual
+        description: "SELIC média anualizada do mês (% a.a., 4 casas decimais). AVG dos dias úteis do mês."
+        tests:
+          - not_null
+      - name: acumulado_12m
+        description: "IPCA acumulado nos últimos 12 meses (%, 4 casas decimais). Único por mês."
+        tests:
+          - not_null
+      - name: selic_real
+        description: >
+          SELIC real = taxa_anual - acumulado_12m (%, 4 casas decimais).
+          Mede o retorno da SELIC acima da inflação. Março/2026: 14.6499 - 4.1428 = 10.5071.
+        tests:
+          - not_null
+      - name: ptax_media
+        description: "PTAX média mensal (R$/USD, 4 casas decimais). AVG dos dias úteis do mês."
+        tests:
+          - not_null
+      - name: ptax_variacao_mensal_pct
+        description: >
+          Variação percentual da PTAX média vs mês anterior (%, 4 casas decimais).
+          NULL apenas em 2000-01-01 (primeiro mês da série) — comportamento esperado por design.
+      - name: transformed_at
+        description: "Timestamp de geração do registro pelo dbt"
+        tests:
+          - not_null
+
+  - name: macro_diario
+    description: >
+      Métricas macroeconômicas diárias com granularidade de dias úteis SELIC.
+      Derivado de macro_mensal via ref(): acumulado_12m é carry forward do valor mensal
+      para cada dia útil do mês — semanticamente correto pois IPCA é definido mensalmente.
+      Grain: dia útil (dias úteis SELIC desde 2000-01-03, ~6.600 registros).
+    columns:
+      - name: date
+        description: "Data de referência (apenas dias úteis SELIC)"
+        tests:
+          - not_null
+          - unique
+      - name: taxa_anual
+        description: "SELIC anualizada do dia (% a.a., 4 casas decimais)"
+        tests:
+          - not_null
+      - name: taxa_cambio
+        description: "PTAX venda do dia (R$/USD, 4 casas decimais)"
+        tests:
+          - not_null
+      - name: variacao_diaria_pct
+        description: >
+          Variação percentual diária da PTAX (%, 4 casas decimais).
+          NULL apenas no primeiro registro histórico — herdado de silver_bcb.ptax_daily.
+      - name: acumulado_12m
+        description: >
+          IPCA acumulado 12 meses (%, 4 casas decimais). Carry forward do macro_mensal:
+          todos os dias de um mesmo mês têm o mesmo acumulado_12m.
+        tests:
+          - not_null
+      - name: selic_real
+        description: "SELIC real diária = taxa_anual - acumulado_12m (%, 4 casas decimais)"
+        tests:
+          - not_null
+      - name: transformed_at
+        description: "Timestamp de geração do registro pelo dbt"
+        tests:
+          - not_null
