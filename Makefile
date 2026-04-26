@@ -44,6 +44,9 @@ migrate: ## Executa migrations do PostgreSQL (requer 'make up PROFILE=core')
 		< docker/postgres/migrations/003_gold_bcb.sql
 	@echo "✓ Migration 003_gold_bcb executada."
 
+metabase-export: ## Exporta dashboard "BCB Macro" para docs/metabase/
+	@set -a && . ./.env && set +a && bash scripts/export_metabase.sh
+
 reset: ## Para containers e remove volumes nomeados (dados do PostgreSQL são perdidos)
 	@echo "ATENÇÃO: Este comando remove todos os dados do PostgreSQL."
 	@read -p "Confirma? [y/N] " ans && [ "$$ans" = "y" ] || exit 1

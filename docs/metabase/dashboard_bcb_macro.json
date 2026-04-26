@@ -1,0 +1,674 @@
+{
+    "description": null,
+    "archived": false,
+    "view_count": 19,
+    "collection_position": null,
+    "dashcards": [
+        {
+            "size_x": 24,
+            "dashboard_tab_id": null,
+            "series": [],
+            "inline_parameters": [],
+            "action_id": null,
+            "collection_authority_level": null,
+            "card": {
+                "cache_invalidated_at": null,
+                "description": null,
+                "archived": false,
+                "view_count": 5,
+                "collection_position": null,
+                "source_card_id": null,
+                "table_id": 9,
+                "result_metadata": [
+                    {
+                        "database_type": "date",
+                        "semantic_type": null,
+                        "table_id": 9,
+                        "lib/temporal-unit": "month",
+                        "lib/deduplicated-name": "date",
+                        "lib/original-name": "date",
+                        "lib/breakout?": true,
+                        "unit": "month",
+                        "name": "date",
+                        "lib/source": "source/table-defaults",
+                        "lib/source-column-alias": "date",
+                        "lib/original-display-name": "Date",
+                        "source": "breakout",
+                        "field_ref": [
+                            "field",
+                            79,
+                            {
+                                "temporal-unit": "month"
+                            }
+                        ],
+                        "effective_type": "type/Date",
+                        "active": true,
+                        "id": 79,
+                        "lib/desired-column-alias": "date",
+                        "position": 0,
+                        "visibility_type": "normal",
+                        "inherited_temporal_unit": "month",
+                        "display_name": "Date: M\u00eas",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 315,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/DateTime": {
+                                    "earliest": "2000-01-01",
+                                    "latest": "2026-03-01"
+                                }
+                            }
+                        },
+                        "base_type": "type/Date"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "sum",
+                        "lib/original-name": "sum",
+                        "name": "sum",
+                        "lib/source": "source/aggregations",
+                        "lib/source-column-alias": "sum",
+                        "source": "aggregation",
+                        "field_ref": [
+                            "aggregation",
+                            0
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "sum",
+                        "display_name": "Soma de Selic Real",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 315,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": -4.8446,
+                                    "q1": 3.9104959317668784,
+                                    "q3": 9.61671007958492,
+                                    "max": 13.7325,
+                                    "sd": 3.9952274820273788,
+                                    "avg": 6.102030793650792
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    }
+                ],
+                "embedding_type": null,
+                "initially_published_at": null,
+                "can_write": true,
+                "card_schema": 23,
+                "database_id": 2,
+                "enable_embedding": false,
+                "collection_id": null,
+                "query_type": "query",
+                "download_perms": "full",
+                "name": "SELIC Real Hist\u00f3rica",
+                "document_id": null,
+                "last_used_at": "2026-04-26T09:46:11.137789-03:00",
+                "type": "question",
+                "dimensions": null,
+                "query_average_duration": 95,
+                "creator_id": 1,
+                "moderation_reviews": [],
+                "updated_at": "2026-04-26T09:31:21.755568-03:00",
+                "made_public_by_id": null,
+                "embedding_params": null,
+                "cache_ttl": null,
+                "dataset_query": {
+                    "lib/type": "mbql/query",
+                    "database": 2,
+                    "stages": [
+                        {
+                            "breakout": [
+                                [
+                                    "field",
+                                    {
+                                        "effective-type": "type/Date",
+                                        "base-type": "type/Date",
+                                        "lib/uuid": "cd088570-bac3-4ae4-92cc-0d183e7c1146",
+                                        "temporal-unit": "month"
+                                    },
+                                    79
+                                ]
+                            ],
+                            "source-table": 9,
+                            "lib/type": "mbql.stage/mbql",
+                            "aggregation": [
+                                [
+                                    "sum",
+                                    {
+                                        "lib/uuid": "470abf58-49a9-4613-8c7e-3b1e49d6ea60"
+                                    },
+                                    [
+                                        "field",
+                                        {
+                                            "lib/uuid": "f1b9cd05-d663-4cbc-b2fa-614422fd2b03",
+                                            "effective-type": "type/Decimal",
+                                            "base-type": "type/Decimal"
+                                        },
+                                        82
+                                    ]
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                "dimension_mappings": null,
+                "id": 40,
+                "legacy_query": null,
+                "parameter_mappings": [],
+                "display": "line",
+                "archived_directly": false,
+                "entity_id": "yWst48Y2a767hSY2yuGqz",
+                "collection_preview": true,
+                "visualization_settings": {
+                    "graph.x_axis.scale": "timeseries",
+                    "graph.dimensions": [
+                        "date"
+                    ],
+                    "graph.metrics": [
+                        "sum"
+                    ]
+                },
+                "metabase_version": "v0.60.2.5 (d9c91f2)",
+                "parameters": [],
+                "dashboard_id": 2,
+                "created_at": "2026-04-26T09:31:21.755568-03:00",
+                "public_uuid": null
+            },
+            "updated_at": "2026-04-26T09:33:57.45956-03:00",
+            "col": 0,
+            "id": 37,
+            "parameter_mappings": [],
+            "card_id": 40,
+            "entity_id": "q7y7H_j10F14KjJCcU_ns",
+            "visualization_settings": {},
+            "size_y": 7,
+            "dashboard_id": 2,
+            "created_at": "2026-04-26T09:31:21.769606-03:00",
+            "row": 0
+        },
+        {
+            "size_x": 24,
+            "dashboard_tab_id": null,
+            "series": [],
+            "inline_parameters": [],
+            "action_id": null,
+            "collection_authority_level": null,
+            "card": {
+                "cache_invalidated_at": null,
+                "description": null,
+                "archived": false,
+                "view_count": 2,
+                "collection_position": null,
+                "source_card_id": null,
+                "table_id": 9,
+                "result_metadata": [
+                    {
+                        "database_type": "date",
+                        "semantic_type": null,
+                        "table_id": 9,
+                        "lib/temporal-unit": "month",
+                        "lib/deduplicated-name": "date",
+                        "lib/original-name": "date",
+                        "lib/breakout?": true,
+                        "unit": "month",
+                        "name": "date",
+                        "lib/source": "source/table-defaults",
+                        "lib/source-column-alias": "date",
+                        "lib/original-display-name": "Date",
+                        "source": "breakout",
+                        "field_ref": [
+                            "field",
+                            79,
+                            {
+                                "temporal-unit": "month"
+                            }
+                        ],
+                        "effective_type": "type/Date",
+                        "active": true,
+                        "id": 79,
+                        "lib/desired-column-alias": "date",
+                        "position": 0,
+                        "visibility_type": "normal",
+                        "inherited_temporal_unit": "month",
+                        "display_name": "Date: M\u00eas",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 315,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/DateTime": {
+                                    "earliest": "2000-01-01",
+                                    "latest": "2026-03-01"
+                                }
+                            }
+                        },
+                        "base_type": "type/Date"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "sum",
+                        "lib/original-name": "sum",
+                        "name": "sum",
+                        "lib/source": "source/aggregations",
+                        "lib/source-column-alias": "sum",
+                        "source": "aggregation",
+                        "field_ref": [
+                            "aggregation",
+                            0
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "sum",
+                        "display_name": "Soma de Taxa Anual",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 236,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 1.8999,
+                                    "q1": 9.032616666666666,
+                                    "q3": 15.04577076937805,
+                                    "max": 26.3191,
+                                    "sd": 4.890770900196034,
+                                    "avg": 12.315181904761907
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "sum_2",
+                        "lib/original-name": "sum",
+                        "name": "sum_2",
+                        "lib/source": "source/aggregations",
+                        "lib/source-column-alias": "sum",
+                        "source": "aggregation",
+                        "field_ref": [
+                            "aggregation",
+                            1
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "sum_2",
+                        "display_name": "Soma de Acumulado 12m",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 312,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 1.8775,
+                                    "q1": 4.466618959710357,
+                                    "q3": 7.219645397249865,
+                                    "max": 17.2353,
+                                    "sd": 2.6918578812982656,
+                                    "avg": 6.21315111111111
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    }
+                ],
+                "embedding_type": null,
+                "initially_published_at": null,
+                "can_write": true,
+                "card_schema": 23,
+                "database_id": 2,
+                "enable_embedding": false,
+                "collection_id": null,
+                "query_type": "query",
+                "download_perms": "full",
+                "name": "SELIC vs Infla\u00e7\u00e3o",
+                "document_id": null,
+                "last_used_at": "2026-04-26T09:46:11.137789-03:00",
+                "type": "question",
+                "dimensions": null,
+                "query_average_duration": 45,
+                "creator_id": 1,
+                "moderation_reviews": [],
+                "updated_at": "2026-04-26T09:44:57.291435-03:00",
+                "made_public_by_id": null,
+                "embedding_params": null,
+                "cache_ttl": null,
+                "dataset_query": {
+                    "lib/type": "mbql/query",
+                    "database": 2,
+                    "stages": [
+                        {
+                            "lib/type": "mbql.stage/mbql",
+                            "source-table": 9,
+                            "aggregation": [
+                                [
+                                    "sum",
+                                    {
+                                        "lib/uuid": "9fa03417-cc78-4b0e-b122-7f00d17295b2"
+                                    },
+                                    [
+                                        "field",
+                                        {
+                                            "effective-type": "type/Decimal",
+                                            "lib/uuid": "f00b504b-e1e7-4b65-a1b5-9c3492009d31",
+                                            "base-type": "type/Decimal"
+                                        },
+                                        80
+                                    ]
+                                ],
+                                [
+                                    "sum",
+                                    {
+                                        "lib/uuid": "6bf80f03-3535-46a8-8d24-531f496394a8"
+                                    },
+                                    [
+                                        "field",
+                                        {
+                                            "lib/uuid": "e63c446e-6bfa-4845-870e-7915710e1048",
+                                            "effective-type": "type/Decimal",
+                                            "base-type": "type/Decimal"
+                                        },
+                                        81
+                                    ]
+                                ]
+                            ],
+                            "breakout": [
+                                [
+                                    "field",
+                                    {
+                                        "lib/uuid": "b73a3667-233b-4084-a981-61bdbf4e328b",
+                                        "effective-type": "type/Date",
+                                        "base-type": "type/Date",
+                                        "temporal-unit": "month"
+                                    },
+                                    79
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                "dimension_mappings": null,
+                "id": 41,
+                "legacy_query": null,
+                "parameter_mappings": [],
+                "display": "line",
+                "archived_directly": false,
+                "entity_id": "BPoSHXN8ieDDUW_k4MFgL",
+                "collection_preview": true,
+                "visualization_settings": {
+                    "graph.x_axis.scale": "timeseries",
+                    "graph.dimensions": [
+                        "date"
+                    ],
+                    "graph.metrics": [
+                        "sum",
+                        "sum_2"
+                    ]
+                },
+                "metabase_version": "v0.60.2.5 (d9c91f2)",
+                "parameters": [],
+                "dashboard_id": 2,
+                "created_at": "2026-04-26T09:44:57.291435-03:00",
+                "public_uuid": null
+            },
+            "updated_at": "2026-04-26T09:45:30.037743-03:00",
+            "col": 0,
+            "id": 38,
+            "parameter_mappings": [],
+            "card_id": 41,
+            "entity_id": "Kj-5roTVmPfiHrT0Se8LZ",
+            "visualization_settings": {},
+            "size_y": 6,
+            "dashboard_id": 2,
+            "created_at": "2026-04-26T09:44:57.298203-03:00",
+            "row": 7
+        },
+        {
+            "size_x": 24,
+            "dashboard_tab_id": null,
+            "series": [],
+            "inline_parameters": [],
+            "action_id": null,
+            "collection_authority_level": null,
+            "card": {
+                "cache_invalidated_at": null,
+                "description": null,
+                "archived": false,
+                "view_count": 1,
+                "collection_position": null,
+                "source_card_id": null,
+                "table_id": 9,
+                "result_metadata": [
+                    {
+                        "database_type": "date",
+                        "semantic_type": null,
+                        "table_id": 9,
+                        "lib/temporal-unit": "month",
+                        "lib/deduplicated-name": "date",
+                        "lib/original-name": "date",
+                        "lib/breakout?": true,
+                        "unit": "month",
+                        "name": "date",
+                        "lib/source": "source/table-defaults",
+                        "lib/source-column-alias": "date",
+                        "lib/original-display-name": "Date",
+                        "source": "breakout",
+                        "field_ref": [
+                            "field",
+                            79,
+                            {
+                                "temporal-unit": "month"
+                            }
+                        ],
+                        "effective_type": "type/Date",
+                        "active": true,
+                        "id": 79,
+                        "lib/desired-column-alias": "date",
+                        "position": 0,
+                        "visibility_type": "normal",
+                        "inherited_temporal_unit": "month",
+                        "display_name": "Date: M\u00eas",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 315,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/DateTime": {
+                                    "earliest": "2000-01-01",
+                                    "latest": "2026-03-01"
+                                }
+                            }
+                        },
+                        "base_type": "type/Date"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "sum",
+                        "lib/original-name": "sum",
+                        "name": "sum",
+                        "lib/source": "source/aggregations",
+                        "lib/source-column-alias": "sum",
+                        "source": "aggregation",
+                        "field_ref": [
+                            "aggregation",
+                            0
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "sum",
+                        "display_name": "Soma de Ptax Media",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 313,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 1.5639,
+                                    "q1": 2.0644035714285716,
+                                    "q3": 4.097234343591799,
+                                    "max": 6.097,
+                                    "sd": 1.335181567905777,
+                                    "avg": 3.2005184126984134
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    }
+                ],
+                "embedding_type": null,
+                "initially_published_at": null,
+                "can_write": true,
+                "card_schema": 23,
+                "database_id": 2,
+                "enable_embedding": false,
+                "collection_id": null,
+                "query_type": "query",
+                "download_perms": "full",
+                "name": "PTAX M\u00e9dio Mensal",
+                "document_id": null,
+                "last_used_at": "2026-04-26T09:46:11.137789-03:00",
+                "type": "question",
+                "dimensions": null,
+                "query_average_duration": 24,
+                "creator_id": 1,
+                "moderation_reviews": [],
+                "updated_at": "2026-04-26T09:46:10.688963-03:00",
+                "made_public_by_id": null,
+                "embedding_params": null,
+                "cache_ttl": null,
+                "dataset_query": {
+                    "lib/type": "mbql/query",
+                    "database": 2,
+                    "stages": [
+                        {
+                            "source-table": 9,
+                            "lib/type": "mbql.stage/mbql",
+                            "aggregation": [
+                                [
+                                    "sum",
+                                    {
+                                        "lib/uuid": "ab60cbce-5174-478f-8adb-f409213086f1"
+                                    },
+                                    [
+                                        "field",
+                                        {
+                                            "lib/uuid": "333e7a38-1825-467d-8b38-6087f7260b61",
+                                            "effective-type": "type/Decimal",
+                                            "base-type": "type/Decimal"
+                                        },
+                                        83
+                                    ]
+                                ]
+                            ],
+                            "breakout": [
+                                [
+                                    "field",
+                                    {
+                                        "lib/uuid": "7eb46038-3009-4626-9e27-2d16763dd543",
+                                        "effective-type": "type/Date",
+                                        "base-type": "type/Date",
+                                        "temporal-unit": "month"
+                                    },
+                                    79
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                "dimension_mappings": null,
+                "id": 42,
+                "legacy_query": null,
+                "parameter_mappings": [],
+                "display": "line",
+                "archived_directly": false,
+                "entity_id": "JbaygcCphRXL0VLXjGL6r",
+                "collection_preview": true,
+                "visualization_settings": {
+                    "graph.x_axis.scale": "timeseries",
+                    "graph.dimensions": [
+                        "date"
+                    ],
+                    "graph.metrics": [
+                        "sum"
+                    ]
+                },
+                "metabase_version": "v0.60.2.5 (d9c91f2)",
+                "parameters": [],
+                "dashboard_id": 2,
+                "created_at": "2026-04-26T09:46:10.688963-03:00",
+                "public_uuid": null
+            },
+            "updated_at": "2026-04-26T09:46:49.942963-03:00",
+            "col": 0,
+            "id": 39,
+            "parameter_mappings": [],
+            "card_id": 42,
+            "entity_id": "PtWU8upT72HEHQa00KbNF",
+            "visualization_settings": {},
+            "size_y": 6,
+            "dashboard_id": 2,
+            "created_at": "2026-04-26T09:46:10.695986-03:00",
+            "row": 13
+        }
+    ],
+    "embedding_type": null,
+    "initially_published_at": null,
+    "can_write": true,
+    "can_set_cache_policy": true,
+    "tabs": [],
+    "enable_embedding": false,
+    "collection_id": null,
+    "show_in_getting_started": false,
+    "name": "BCB Macro",
+    "is_remote_synced": false,
+    "width": "fixed",
+    "caveats": null,
+    "collection_authority_level": null,
+    "creator_id": 1,
+    "can_restore": false,
+    "moderation_reviews": [],
+    "updated_at": "2026-04-26T09:18:46.216852-03:00",
+    "made_public_by_id": null,
+    "embedding_params": null,
+    "cache_ttl": null,
+    "last_used_param_values": {},
+    "id": 2,
+    "last_viewed_at": "2026-04-26T09:46:11.10932-03:00",
+    "position": null,
+    "archived_directly": false,
+    "entity_id": "tC7G1sdcIngG78L-9Mbzw",
+    "param_fields": {},
+    "last-edit-info": {
+        "id": 1,
+        "email": "admin@finlake.local",
+        "first_name": "Nilton",
+        "last_name": "Coura",
+        "timestamp": "2026-04-26T09:46:49.9522-03:00"
+    },
+    "collection": {
+        "metabase.collections.models.collection.root/is-root?": true,
+        "authority_level": null,
+        "name": "Nossas an\u00e1lises",
+        "is_personal": false,
+        "id": "root",
+        "is_remote_synced": false,
+        "can_write": true
+    },
+    "parameters": [],
+    "auto_apply_filters": true,
+    "created_at": "2026-04-26T09:18:46.216852-03:00",
+    "public_uuid": null,
+    "points_of_interest": null,
+    "can_delete": false
+}
