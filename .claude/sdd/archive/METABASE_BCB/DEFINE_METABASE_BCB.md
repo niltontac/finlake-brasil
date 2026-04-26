@@ -11,7 +11,7 @@
 | **Feature**       | METABASE_BCB                                     |
 | **Data**          | 2026-04-26                                       |
 | **Autor**         | Nilton Coura                                     |
-| **Status**        | Ready for Design                                 |
+| **Status**        | ✅ Shipped                                       |
 | **Clarity Score** | 14/15                                            |
 | **Origem**        | BRAINSTORM_METABASE_BCB.md (2026-04-25)          |
 | **Upstream**      | GOLD_BCB (shipped 2026-04-24)                    |
