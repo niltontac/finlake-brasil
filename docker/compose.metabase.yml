@@ -9,6 +9,8 @@ services:
       JAVA_TIMEZONE: America/Sao_Paulo
     ports:
       - "${METABASE_PORT:-3030}:3000"
+    volumes:
+      - metabase-data:/metabase-data
     networks:
       - finlake-net
     depends_on:

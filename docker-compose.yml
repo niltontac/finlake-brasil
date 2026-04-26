@@ -10,3 +10,5 @@ networks:
 volumes:
   postgres-data:
     driver: local
+  metabase-data:
+    driver: local
