@@ -1,7 +1,7 @@
 -include .env
 export
 
-.PHONY: up down logs ps reset test init-db help
+.PHONY: up down logs ps reset test init-db cvm-hist-load help
 
 PROFILE ?= full
 
@@ -43,6 +43,18 @@ migrate: ## Executa migrations do PostgreSQL (requer 'make up PROFILE=core')
 	@docker exec -i finlake-postgres psql -U $(POSTGRES_USER) -d $(POSTGRES_DB) \
 		< docker/postgres/migrations/003_gold_bcb.sql
 	@echo "✓ Migration 003_gold_bcb executada."
+	@echo "→ Executando migration 004_bronze_cvm (schema bronze_cvm + tabelas + partições)..."
+	@docker exec -i finlake-postgres psql -U $(POSTGRES_USER) -d $(POSTGRES_DB) \
+		< docker/postgres/migrations/004_bronze_cvm.sql
+	@echo "✓ Migration 004_bronze_cvm executada."
+
+cvm-hist-load: ## Carga histórica CVM via PySpark (START_YEAR=XXXX END_YEAR=XXXX SPARK_JDBC_JAR=/path/to/postgresql.jar)
+	@set -a && . ./.env && set +a && \
+		spark-submit \
+		--jars $(SPARK_JDBC_JAR) \
+		scripts/spark/historical_load_cvm.py \
+		--start-year $(START_YEAR) \
+		--end-year $(END_YEAR)
 
 metabase-export: ## Exporta dashboard "BCB Macro" para docs/metabase/
 	@set -a && . ./.env && set +a && bash scripts/export_metabase.sh
