@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS bronze_cvm.cadastro (
     -- Identificação principal
     cnpj_fundo           VARCHAR(18)   NOT NULL,
     tp_fundo             VARCHAR(100),
-    denom_social         VARCHAR(200),
+    denom_social         TEXT,
     cd_cvm               VARCHAR(20),
 
     -- Ciclo de vida do fundo
@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS bronze_cvm.cadastro (
     sit                  VARCHAR(80),
     classe               VARCHAR(100),
     classe_anbima        VARCHAR(100),
-    rentab_fundo         VARCHAR(200),
-    publico_alvo         VARCHAR(200),
+    rentab_fundo         TEXT,
+    publico_alvo         TEXT,
 
     -- Estrutura e características
     condom               VARCHAR(20),
@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS bronze_cvm.cadastro (
 
     -- Taxas e informações complementares
     taxa_perfm           NUMERIC(10,4),
-    inf_taxa_perfm       VARCHAR(300),
+    inf_taxa_perfm       TEXT,
     taxa_adm             NUMERIC(10,4),
-    inf_taxa_adm         VARCHAR(300),
+    inf_taxa_adm         TEXT,
 
     -- Patrimônio líquido
     vl_patrim_liq        NUMERIC(18,6),
@@ -56,25 +56,25 @@ CREATE TABLE IF NOT EXISTS bronze_cvm.cadastro (
 
     -- Administrador
     cnpj_admin           VARCHAR(18),
-    admin                VARCHAR(200),
-    diretor              VARCHAR(200),
+    admin                TEXT,
+    diretor              TEXT,
 
     -- Gestor
     pf_pj_gestor         VARCHAR(2),
     cpf_cnpj_gestor      VARCHAR(18),
-    gestor               VARCHAR(200),
+    gestor               TEXT,
 
     -- Auditor
     cnpj_auditor         VARCHAR(18),
-    auditor              VARCHAR(200),
+    auditor              TEXT,
 
     -- Custodiante
     cnpj_custodiante     VARCHAR(18),
-    custodiante          VARCHAR(200),
+    custodiante          TEXT,
 
     -- Controlador
     cnpj_controlador     VARCHAR(18),
-    controlador          VARCHAR(200),
+    controlador          TEXT,
 
     -- Auditoria (geradas na ingestão — não presentes no CSV)
     ingested_at          TIMESTAMP     NOT NULL DEFAULT NOW(),
