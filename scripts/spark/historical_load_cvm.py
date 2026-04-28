@@ -1,79 +1,51 @@
 """Script PySpark para carga histórica do informe diário CVM.
 
-Baixa e carrega todos os ZIPs do intervalo especificado para
-bronze_cvm.informe_diario via JDBC. Idempotente: ON CONFLICT DO NOTHING
-na PK (cnpj_fundo, dt_comptc) garante que re-executar é seguro.
-
-Bifurcação de URL:
-- Anos ≤ 2020: DADOS/HIST/inf_diario_fi_{YYYY}.zip (arquivo anual)
-- Anos ≥ 2021: DADOS/inf_diario_fi_{YYYYMM}.zip (arquivo mensal)
-
 Uso:
-    spark-submit --jars /path/to/postgresql-42.x.jar \\
-        scripts/spark/historical_load_cvm.py \\
+    spark-submit scripts/spark/historical_load_cvm.py \
         --start-year 2000 --end-year 2024
 
 Variáveis de ambiente obrigatórias:
-    FINLAKE_JDBC_URL       jdbc:postgresql://localhost:5433/finlake
-    FINLAKE_JDBC_USER      postgres
-    FINLAKE_JDBC_PASSWORD  supabase123
+    FINLAKE_JDBC_URL      jdbc:postgresql://localhost:5433/finlake
+    FINLAKE_JDBC_USER     postgres
+    FINLAKE_JDBC_PASSWORD <senha>
 """
 from __future__ import annotations
 
 import argparse
-import io
 import logging
 import os
 import sys
 from datetime import date
 from pathlib import Path
 
-# Permite importar cvm_client mesmo fora do container Airflow
 sys.path.insert(0, str(Path(__file__).parents[2] / "dags"))
 
-import pandas as pd
+import psycopg2
 from pyspark.sql import SparkSession
-from pyspark.sql.types import (
-    DateType,
-    DoubleType,
-    IntegerType,
-    StringType,
-    StructField,
-    StructType,
-)
 
 from domain_cvm.ingestion.cvm_client import (
-    _safe_float,
-    _safe_int,
     build_informe_url,
     download_bytes,
     unzip_csv,
 )
+from domain_cvm.ingestion.cvm_client import _safe_float, _safe_int
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s %(levelname)s %(name)s %(message)s",
-)
+import io
+import pandas as pd
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
 logger = logging.getLogger(__name__)
 
-_TABLE = "bronze_cvm.informe_diario"
-
-_SCHEMA = StructType([
-    StructField("tp_fundo",      StringType(),  True),
-    StructField("cnpj_fundo",    StringType(),  False),
-    StructField("dt_comptc",     DateType(),    False),
-    StructField("vl_total",      DoubleType(),  True),
-    StructField("vl_quota",      DoubleType(),  True),
-    StructField("vl_patrim_liq", DoubleType(),  True),
-    StructField("captc_dia",     DoubleType(),  True),
-    StructField("resg_dia",      DoubleType(),  True),
-    StructField("nr_cotst",      IntegerType(), True),
-    StructField("source_url",    StringType(),  False),
-])
+_INSERT_SQL = """
+  INSERT INTO bronze_cvm.informe_diario
+        (tp_fundo, cnpj_fundo, dt_comptc, vl_total, vl_quota,
+         vl_patrim_liq, captc_dia, resg_dia, nr_cotst, source_url)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ON CONFLICT (cnpj_fundo, dt_comptc) DO NOTHING
+"""
 
 
 def _parse_to_pandas(csv_bytes: bytes, source_url: str) -> pd.DataFrame:
-    """Converte bytes CSV (latin1, ;) para DataFrame no schema de informe_diario."""
     df = pd.read_csv(
         io.BytesIO(csv_bytes),
         sep=";",
@@ -81,16 +53,17 @@ def _parse_to_pandas(csv_bytes: bytes, source_url: str) -> pd.DataFrame:
         dtype=str,
         low_memory=False,
     )
-
-    # Descartar linhas sem CNPJ válido (vetorizado)
-    cnpj_mask = df["CNPJ_FUNDO"].notna() & df["CNPJ_FUNDO"].str.strip().astype(bool)
-    df = df[cnpj_mask].copy()
-
+    if "CNPJ_FUNDO_CLASSE" in df.columns:
+        df = df.rename(columns={
+            "CNPJ_FUNDO_CLASSE": "CNPJ_FUNDO",
+            "TP_FUNDO_CLASSE": "TP_FUNDO",
+        })
+    mask = df["CNPJ_FUNDO"].notna() & df["CNPJ_FUNDO"].str.strip().astype(bool)
+    df = df[mask].copy()
     parsed_dates = pd.to_datetime(df["DT_COMPTC"], errors="coerce")
     df = df[parsed_dates.notna()].copy()
     parsed_dates = parsed_dates[parsed_dates.notna()]
-
-    return pd.DataFrame({
+    result = pd.DataFrame({
         "tp_fundo":      df.get("TP_FUNDO"),
         "cnpj_fundo":    df["CNPJ_FUNDO"].str.strip(),
         "dt_comptc":     parsed_dates.dt.date,
@@ -102,18 +75,10 @@ def _parse_to_pandas(csv_bytes: bytes, source_url: str) -> pd.DataFrame:
         "nr_cotst":      df.get("NR_COTST", pd.Series(dtype=str)).apply(_safe_int),
         "source_url":    source_url,
     })
+    return result.drop_duplicates(subset=["cnpj_fundo", "dt_comptc"])
 
 
-def _load_url(
-    spark: SparkSession,
-    url: str,
-    jdbc_url: str,
-    jdbc_props: dict,
-) -> int:
-    """Baixa, parseia e carrega um arquivo ZIP no PostgreSQL via JDBC append.
-
-    Retorna o número de registros processados, ou 0 em caso de falha de download.
-    """
+def _load_url(spark: SparkSession, url: str, pg_props: dict) -> int:
     try:
         zip_bytes = download_bytes(url)
         csv_bytes = unzip_csv(zip_bytes)
@@ -123,30 +88,52 @@ def _load_url(
 
     pdf = _parse_to_pandas(csv_bytes, url)
     if pdf.empty:
-        logger.warning("DataFrame vazio para %s — nenhum registro carregado.", url)
+        logger.warning("DataFrame vazio para %s.", url)
         return 0
 
-    sdf = spark.createDataFrame(pdf, schema=_SCHEMA)
-    sdf.write.jdbc(url=jdbc_url, table=_TABLE, mode="append", properties=jdbc_props)
-    count = int(pdf.shape[0])
-    logger.info("Carregado %s: %d registros.", url, count)
-    return count
+    rows = [
+        (
+            row.tp_fundo if pd.notna(row.tp_fundo) else None,
+            row.cnpj_fundo,
+            row.dt_comptc,
+            row.vl_total if pd.notna(row.vl_total) else None,
+            row.vl_quota if pd.notna(row.vl_quota) else None,
+            row.vl_patrim_liq if pd.notna(row.vl_patrim_liq) else None,
+            row.captc_dia if pd.notna(row.captc_dia) else None,
+            row.resg_dia if pd.notna(row.resg_dia) else None,
+            int(row.nr_cotst) if pd.notna(row.nr_cotst) else None,
+            url,
+        )
+        for row in pdf.itertuples(index=False)
+    ]
+
+    conn = psycopg2.connect(**pg_props)
+    try:
+        with conn.cursor() as cur:
+            cur.executemany(_INSERT_SQL, rows)
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
+
+    logger.info("Carregado %s: %d registros.", url, len(rows))
+    return len(rows)
 
 
 def main() -> None:
-    """Itera anos/meses do intervalo e carrega cada arquivo ZIP no PostgreSQL."""
-    parser = argparse.ArgumentParser(
-        description="Carga histórica do informe diário CVM via PySpark",
-    )
-    parser.add_argument("--start-year", type=int, required=True, help="Ano inicial (inclusive)")
-    parser.add_argument("--end-year",   type=int, required=True, help="Ano final (inclusive)")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--start-year", type=int, required=True)
+    parser.add_argument("--end-year", type=int, required=True)
     args = parser.parse_args()
 
-    jdbc_url = os.environ["FINLAKE_JDBC_URL"]
-    jdbc_props = {
+    pg_props = {
+        "host":     "localhost",
+        "port":     5433,
+        "dbname":   "finlake",
         "user":     os.environ["FINLAKE_JDBC_USER"],
         "password": os.environ["FINLAKE_JDBC_PASSWORD"],
-        "driver":   "org.postgresql.Driver",
     }
 
     spark = (
@@ -163,21 +150,15 @@ def main() -> None:
 
     for year in range(args.start_year, args.end_year + 1):
         if year <= 2020:
-            # Arquivo anual — um ZIP cobre o ano inteiro; month é ignorado
             url = build_informe_url(year, 1)
-            total += _load_url(spark, url, jdbc_url, jdbc_props)
+            total += _load_url(spark, url, pg_props)
         else:
             max_month = 12 if year < today.year else max(today.month - 1, 1)
             for month in range(1, max_month + 1):
                 url = build_informe_url(year, month)
-                total += _load_url(spark, url, jdbc_url, jdbc_props)
+                total += _load_url(spark, url, pg_props)
 
-    logger.info(
-        "Carga histórica concluída. Intervalo: %d–%d. Total de registros: %d",
-        args.start_year,
-        args.end_year,
-        total,
-    )
+    logger.info("Concluído. Total: %d registros.", total)
     spark.stop()
 
 
