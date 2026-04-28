@@ -127,6 +127,16 @@ def validate_cadastro_rows(df: pd.DataFrame) -> pd.DataFrame:
     return df[mask].copy()
 
 
+def _normalize_informe_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Normaliza schema 2024+ da CVM: CNPJ_FUNDO_CLASSE → CNPJ_FUNDO."""
+    if "CNPJ_FUNDO_CLASSE" in df.columns:
+        df = df.rename(columns={
+            "CNPJ_FUNDO_CLASSE": "CNPJ_FUNDO",
+            "TP_FUNDO_CLASSE": "TP_FUNDO",
+        })
+    return df
+
+
 def validate_informe_rows(df: pd.DataFrame) -> pd.DataFrame:
     """Descarta linhas do informe com CNPJ_FUNDO inválido ou DT_COMPTC não parseável.
 
@@ -137,6 +147,7 @@ def validate_informe_rows(df: pd.DataFrame) -> pd.DataFrame:
     - DT_COMPTC: deve ser uma data válida (pd.to_datetime errors='coerce').
     Linhas que violam qualquer regra são descartadas com logger.warning.
     """
+    df = _normalize_informe_columns(df)
     cnpj_mask = df["CNPJ_FUNDO"].notna() & df["CNPJ_FUNDO"].str.strip().astype(bool)
 
     parsed_dates = pd.to_datetime(df["DT_COMPTC"], errors="coerce")

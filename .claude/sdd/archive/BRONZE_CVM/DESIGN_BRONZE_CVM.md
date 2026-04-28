@@ -11,7 +11,7 @@
 | **Feature**       | BRONZE_CVM                                         |
 | **Data**          | 2026-04-27                                         |
 | **Autor**         | Nilton Coura                                       |
-| **Status**        | 🔄 Ready for Build                                 |
+| **Status**        | ✅ Shipped                                 |
 | **Origem**        | DEFINE_BRONZE_CVM.md                               |
 
 ---

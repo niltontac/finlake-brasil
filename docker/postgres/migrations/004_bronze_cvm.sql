@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS bronze_cvm.cadastro (
     inf_taxa_adm         TEXT,
 
     -- Patrimônio líquido
-    vl_patrim_liq        NUMERIC(18,6),
+    vl_patrim_liq        NUMERIC(22,6),
     dt_patrim_liq        DATE,
 
     -- Administrador
@@ -94,14 +94,14 @@ COMMENT ON COLUMN bronze_cvm.cadastro.source_url   IS 'URL do arquivo de origem 
 -- 9 colunas da fonte + 2 colunas de auditoria
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS bronze_cvm.informe_diario (
-    tp_fundo        VARCHAR(10),
+    tp_fundo        VARCHAR(50),
     cnpj_fundo      VARCHAR(18)    NOT NULL,
     dt_comptc       DATE           NOT NULL,
-    vl_total        NUMERIC(18,6),
-    vl_quota        NUMERIC(18,8),
-    vl_patrim_liq   NUMERIC(18,6),
-    captc_dia       NUMERIC(18,6),
-    resg_dia        NUMERIC(18,6),
+    vl_total        NUMERIC(22,6),
+    vl_quota        NUMERIC(22,8),
+    vl_patrim_liq   NUMERIC(22,6),
+    captc_dia       NUMERIC(22,6),
+    resg_dia        NUMERIC(22,6),
     nr_cotst        INTEGER,
     ingested_at     TIMESTAMP      NOT NULL DEFAULT NOW(),
     source_url      VARCHAR(300)   NOT NULL,

@@ -11,7 +11,7 @@
 | **Feature**       | BRONZE_CVM                                         |
 | **Data**          | 2026-04-27                                         |
 | **Autor**         | Nilton Coura                                       |
-| **Status**        | 🔄 In Progress                                     |
+| **Status**        | ✅ Shipped                                     |
 | **Clarity Score** | 14/15                                              |
 | **Origem**        | BRAINSTORM_BRONZE_CVM.md (2026-04-27)              |
 | **Upstream**      | METABASE_BCB (shipped 2026-04-26)                  |
