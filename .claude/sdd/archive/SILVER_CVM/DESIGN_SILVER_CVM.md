@@ -10,7 +10,7 @@
 | **Data** | 2026-04-29 |
 | **Autor** | design-agent |
 | **DEFINE** | [DEFINE_SILVER_CVM.md](./DEFINE_SILVER_CVM.md) |
-| **Status** | Pronto para Build |
+| **Status** | Shipped |
 
 ---
 
