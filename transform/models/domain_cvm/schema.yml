@@ -1,0 +1,127 @@
+version: 2
+
+models:
+  - name: fundos
+    description: >
+      Fundos de investimento operacionais extraídos de bronze_cvm.cadastro.
+      Filtro: sit IN ('EM FUNCIONAMENTO NORMAL', 'LIQUIDAÇÃO').
+      Grain: um registro por CNPJ de fundo. Materializado como table (full refresh diário).
+    columns:
+      - name: cnpj_fundo
+        description: "CNPJ do fundo — chave primária da tabela."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: tp_fundo
+        description: "Tipo do fundo conforme classificação CVM."
+        data_tests:
+          - not_null
+
+      - name: denom_social
+        description: "Denominação social do fundo."
+        data_tests:
+          - not_null
+
+      - name: sit
+        description: "Situação operacional do fundo. Apenas valores operacionais chegam à Silver."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['EM FUNCIONAMENTO NORMAL', 'LIQUIDAÇÃO']
+
+      - name: classe
+        description: "Classe do fundo conforme CVM."
+
+      - name: classe_anbima
+        description: "Classificação ANBIMA do fundo."
+
+      - name: publico_alvo
+        description: "Público alvo do fundo (ex: Investidores em Geral, Qualificados, Profissionais)."
+
+      - name: fundo_exclusivo
+        description: "Flag de fundo exclusivo: 'S' para exclusivo, 'N' para aberto."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['S', 'N']
+              config:
+                severity: warn
+
+      - name: taxa_adm
+        description: "Taxa de administração anual (%)."
+
+      - name: taxa_perfm
+        description: "Taxa de performance anual (%)."
+
+      - name: dt_ini_ativ
+        description: "Data de início de atividade do fundo."
+
+      - name: dt_fim_ativ
+        description: "Data de encerramento de atividade (NULL para fundos em funcionamento)."
+
+      - name: admin
+        description: "Nome do administrador do fundo."
+
+      - name: gestor
+        description: "Nome do gestor do fundo."
+
+      - name: transformed_at
+        description: "Timestamp de transformação pela camada Silver."
+        data_tests:
+          - not_null
+
+  - name: informe_diario
+    description: >
+      Informe diário de fundos com tipagem correta e captacao_liquida derivada.
+      Grain: um registro por (cnpj_fundo, dt_comptc).
+      Materializado como incremental (delete+insert, lookback 30 dias).
+      captacao_liquida é NULL quando captc_dia ou resg_dia for NULL — por design (dado ausente).
+    columns:
+      - name: cnpj_fundo
+        description: "CNPJ do fundo."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('fundos')
+                field: cnpj_fundo
+              config:
+                severity: warn
+
+      - name: dt_comptc
+        description: "Data de competência do informe."
+        data_tests:
+          - not_null
+
+      - name: tp_fundo
+        description: "Tipo do fundo."
+
+      - name: vl_total
+        description: "Valor total da carteira do fundo na data."
+
+      - name: vl_quota
+        description: "Valor da cota do fundo na data."
+
+      - name: vl_patrim_liq
+        description: "Patrimônio líquido do fundo na data."
+
+      - name: captc_dia
+        description: "Captação bruta no dia."
+
+      - name: resg_dia
+        description: "Resgates brutos no dia."
+
+      - name: captacao_liquida
+        description: >
+          Captação líquida derivada: captc_dia - resg_dia.
+          NULL quando captc_dia ou resg_dia for NULL (dado ausente na fonte).
+
+      - name: nr_cotst
+        description: "Número de cotistas na data."
+
+      - name: transformed_at
+        description: "Timestamp de transformação pela camada Silver."
+        data_tests:
+          - not_null
