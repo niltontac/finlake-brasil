@@ -1,0 +1,58 @@
+version: 2
+
+sources:
+  - name: bronze_cvm
+    database: finlake
+    schema: bronze_cvm
+    description: "Dados brutos do Portal de Dados Abertos da CVM (dados.cvm.gov.br)."
+    tables:
+      - name: cadastro
+        description: >
+          Cadastro completo de fundos de investimento (SCD Type 1, ~41k fundos).
+          Atualizado diariamente por dag_bronze_cvm_cadastro.
+        freshness:
+          warn_after: {count: 26, period: hour}
+          error_after: {count: 50, period: hour}
+        loaded_at_field: updated_at
+        columns:
+          - name: cnpj_fundo
+            description: "CNPJ do fundo — chave primária."
+          - name: sit
+            description: >
+              Situação do fundo conforme CVM.
+              Valores operacionais: 'EM FUNCIONAMENTO NORMAL', 'LIQUIDAÇÃO'.
+              Demais valores (ex: 'CANCELADA') são excluídos na Silver.
+          - name: denom_social
+            description: "Denominação social do fundo."
+          - name: tp_fundo
+            description: "Tipo do fundo conforme classificação CVM."
+          - name: taxa_adm
+            description: "Taxa de administração anual (NUMERIC 10,4)."
+          - name: taxa_perfm
+            description: "Taxa de performance anual (NUMERIC 10,4)."
+
+      - name: informe_diario
+        description: >
+          Informe diário de fundos particionado por dt_comptc (RANGE mensal).
+          Atualizado mensalmente por dag_bronze_cvm_informe.
+          ~6,5M registros em 2024.
+          O dbt source() aponta para a tabela pai; PostgreSQL roteia para a partição correta automaticamente.
+        columns:
+          - name: cnpj_fundo
+            description: "CNPJ do fundo."
+          - name: dt_comptc
+            description: "Data de competência do informe."
+          - name: tp_fundo
+            description: "Tipo do fundo."
+          - name: vl_total
+            description: "Valor total da carteira do fundo."
+          - name: vl_quota
+            description: "Valor da cota do fundo."
+          - name: vl_patrim_liq
+            description: "Valor do patrimônio líquido do fundo."
+          - name: captc_dia
+            description: "Captação bruta no dia."
+          - name: resg_dia
+            description: "Resgates brutos no dia."
+          - name: nr_cotst
+            description: "Número de cotistas."

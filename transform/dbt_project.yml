@@ -16,3 +16,7 @@ models:
       +materialized: table
       gold:
         +schema: gold_bcb
+
+    domain_cvm:
+      +materialized: table
+      +schema: silver_cvm
