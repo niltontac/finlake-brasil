@@ -9,7 +9,7 @@
 | **Feature** | SILVER_CVM |
 | **Data** | 2026-04-29 |
 | **Autor** | define-agent |
-| **Status** | Pronto para Design |
+| **Status** | Shipped |
 | **Clarity Score** | 15/15 |
 | **Origem** | BRAINSTORM_SILVER_CVM.md (2026-04-28) |
 
