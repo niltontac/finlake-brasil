@@ -9,7 +9,7 @@
 | **Feature** | GOLD_CVM |
 | **Data** | 2026-04-30 |
 | **Autor** | define-agent |
-| **Status** | Pronto para Design |
+| **Status** | ✅ Shipped |
 | **Clarity Score** | 15/15 |
 | **Origem** | BRAINSTORM_GOLD_CVM.md (2026-04-29) |
 

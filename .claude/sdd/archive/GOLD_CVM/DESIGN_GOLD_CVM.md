@@ -10,7 +10,7 @@
 | **Data** | 2026-04-30 |
 | **Autor** | design-agent |
 | **DEFINE** | [DEFINE_GOLD_CVM.md](./DEFINE_GOLD_CVM.md) |
-| **Status** | Pronto para Build |
+| **Status** | ✅ Shipped |
 
 ---
 
