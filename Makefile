@@ -51,6 +51,10 @@ migrate: ## Executa migrations do PostgreSQL (requer 'make up PROFILE=core')
 	@docker exec -i finlake-postgres psql -U $(POSTGRES_USER) -d $(POSTGRES_DB) \
 		< docker/postgres/migrations/005_silver_cvm.sql
 	@echo "✓ Migration 005_silver_cvm executada."
+	@echo "→ Executando migration 006_gold_cvm (schema gold_cvm)..."
+	@docker exec -i finlake-postgres psql -U $(POSTGRES_USER) -d $(POSTGRES_DB) \
+		< docker/postgres/migrations/006_gold_cvm.sql
+	@echo "✓ Migration 006_gold_cvm executada."
 
 cvm-hist-load: ## Carga histórica CVM via PySpark (START_YEAR=XXXX END_YEAR=XXXX SPARK_JDBC_JAR=/path/to/postgresql.jar)
 	@set -a && . ./.env && set +a && \

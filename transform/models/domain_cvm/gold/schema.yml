@@ -1,0 +1,119 @@
+version: 2
+
+models:
+  - name: fundo_diario
+    description: >
+      Métricas diárias de performance por fundo de investimento.
+      Grain: (cnpj_fundo, dt_comptc). Fonte: ref('informe_diario').
+      rentabilidade_diaria_pct é NULL no primeiro registro de cada fundo (LAG sem histórico)
+      e quando vl_quota_anterior = 0 (NULLIF — dado anômalo confirmado na Silver).
+    columns:
+      - name: cnpj_fundo
+        description: "CNPJ do fundo."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('fundos')
+                field: cnpj_fundo
+              config:
+                severity: warn
+
+      - name: dt_comptc
+        description: "Data de competência do informe."
+        data_tests:
+          - not_null
+
+      - name: tp_fundo
+        description: "Tipo do fundo."
+
+      - name: vl_quota
+        description: "Valor da cota na data."
+
+      - name: vl_quota_anterior
+        description: "Cota do dia anterior via LAG. NULL no primeiro registro de cada fundo."
+
+      - name: vl_patrim_liq
+        description: "Patrimônio líquido na data."
+
+      - name: captacao_liquida
+        description: "Captação líquida do dia (captc_dia - resg_dia)."
+
+      - name: rentabilidade_diaria_pct
+        description: >
+          Retorno diário percentual = (vl_quota - vl_quota_anterior) / NULLIF(vl_quota_anterior, 0) * 100.
+          NULL quando vl_quota_anterior é NULL (primeiro dia do fundo) ou zero (dado anômalo).
+
+      - name: transformed_at
+        description: "Timestamp de transformação pela camada Gold."
+        data_tests:
+          - not_null
+
+  - name: fundo_mensal
+    description: >
+      Métricas mensais de performance com comparativo cross-domain vs. SELIC e IPCA.
+      Grain: (cnpj_fundo, ano_mes). Fontes: ref('informe_diario'), ref('fundos'), ref('macro_mensal').
+      alpha_selic e alpha_ipca são NULL quando rentabilidade não calculável ou sem match BCB.
+      meses_com_dados indica quantos meses distintos o fundo possui dados no Silver.
+    columns:
+      - name: cnpj_fundo
+        description: "CNPJ do fundo."
+        data_tests:
+          - not_null
+
+      - name: ano_mes
+        description: "Primeiro dia do mês de referência (date_trunc('month'))."
+        data_tests:
+          - not_null
+
+      - name: tp_fundo
+        description: "Tipo do fundo."
+
+      - name: gestor
+        description: "Nome do gestor (via JOIN com silver_cvm.fundos)."
+
+      - name: vl_quota_inicial
+        description: "Cota no primeiro dia útil do mês (FIRST_VALUE por fundo/mês)."
+
+      - name: vl_quota_final
+        description: "Cota no último dia útil do mês (LAST_VALUE por fundo/mês)."
+
+      - name: rentabilidade_mes_pct
+        description: >
+          Retorno mensal = (vl_quota_final - vl_quota_inicial) / NULLIF(vl_quota_inicial, 0) * 100.
+          NULL quando vl_quota_inicial é zero.
+
+      - name: captacao_liquida_acumulada
+        description: "Soma das captações líquidas diárias no mês."
+
+      - name: vl_patrim_liq_medio
+        description: "Média do patrimônio líquido diário no mês."
+
+      - name: nr_cotst_medio
+        description: "Média do número de cotistas diário no mês."
+
+      - name: meses_com_dados
+        description: "Quantidade de meses com dados para o fundo em todo o histórico Silver disponível."
+        data_tests:
+          - not_null
+
+      - name: taxa_anual_bcb
+        description: "SELIC média anualizada do mês (gold_bcb.macro_mensal). NULL se sem match BCB."
+
+      - name: acumulado_12m_ipca
+        description: "IPCA acumulado 12 meses (gold_bcb.macro_mensal). NULL se sem match BCB."
+
+      - name: alpha_selic
+        description: >
+          Alpha vs. SELIC = rentabilidade_mes_pct - (taxa_anual_bcb / 12).
+          Positivo: fundo superou a SELIC no mês. NULL se rentabilidade ou BCB indisponíveis.
+
+      - name: alpha_ipca
+        description: >
+          Alpha vs. IPCA = rentabilidade_mes_pct - (acumulado_12m_ipca / 12).
+          Positivo: fundo superou a inflação no mês. NULL se rentabilidade ou BCB indisponíveis.
+
+      - name: transformed_at
+        description: "Timestamp de transformação pela camada Gold."
+        data_tests:
+          - not_null

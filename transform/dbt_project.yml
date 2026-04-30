@@ -20,3 +20,5 @@ models:
     domain_cvm:
       +materialized: table
       +schema: silver_cvm
+      gold:
+        +schema: gold_cvm
