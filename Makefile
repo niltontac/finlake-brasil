@@ -67,6 +67,13 @@ cvm-hist-load: ## Carga histórica CVM via PySpark (START_YEAR=XXXX END_YEAR=XXX
 metabase-export: ## Exporta dashboard "BCB Macro" para docs/metabase/
 	@set -a && . ./.env && set +a && bash scripts/export_metabase.sh
 
+metabase-export-cvm: ## Exporta 3 dashboards CVM para docs/metabase/ (requer 'make up PROFILE=full' e .env)
+	@set -a && . ./.env && set +a && bash scripts/export_metabase_cvm.sh
+
+metabase-export-all: ## Exporta todos os dashboards BCB + CVM (requer 'make up PROFILE=full' e .env)
+	@set -a && . ./.env && set +a && bash scripts/export_metabase.sh
+	@set -a && . ./.env && set +a && bash scripts/export_metabase_cvm.sh
+
 reset: ## Para containers e remove volumes nomeados (dados do PostgreSQL são perdidos)
 	@echo "ATENÇÃO: Este comando remove todos os dados do PostgreSQL."
 	@read -p "Confirma? [y/N] " ans && [ "$$ans" = "y" ] || exit 1
