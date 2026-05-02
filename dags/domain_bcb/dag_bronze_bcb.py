@@ -14,7 +14,7 @@ from domain_bcb.ingestion.loaders import ingest_ipca, ingest_ptax, ingest_selic
 
 _DEFAULT_ARGS: dict = {
     "owner": "domain_bcb",
-    "retries": 2,
+    "retries": 3,
     "retry_delay": timedelta(minutes=5),
     "email_on_failure": False,
     "email_on_retry": False,

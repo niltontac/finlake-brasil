@@ -14,7 +14,7 @@ from domain_cvm.ingestion.loaders_cadastro import ingest_cadastro
 
 _DEFAULT_ARGS: dict = {
     "owner": "domain_cvm",
-    "retries": 2,
+    "retries": 3,
     "retry_delay": timedelta(minutes=10),
     "email_on_failure": False,
     "email_on_retry": False,
