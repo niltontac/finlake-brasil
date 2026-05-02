@@ -10,7 +10,7 @@
 | **Data** | 2026-05-01 |
 | **Autor** | design-agent |
 | **DEFINE** | [DEFINE_METABASE_CVM.md](./DEFINE_METABASE_CVM.md) |
-| **Status** | Pronto para Build |
+| **Status** | ✅ Shipped |
 
 ---
 
