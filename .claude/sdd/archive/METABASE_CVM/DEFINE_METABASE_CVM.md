@@ -10,7 +10,7 @@
 | **Feature** | METABASE_CVM |
 | **Data** | 2026-04-30 |
 | **Autor** | define-agent |
-| **Status** | Pronto para Design |
+| **Status** | ✅ Shipped |
 | **Clarity Score** | 15/15 |
 | **Origem** | BRAINSTORM_METABASE_CVM.md (2026-04-30) |
 
