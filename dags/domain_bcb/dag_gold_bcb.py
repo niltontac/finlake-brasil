@@ -13,7 +13,7 @@ from airflow.sensors.external_task import ExternalTaskSensor
 
 _DEFAULT_ARGS: dict = {
     "owner": "domain_bcb",
-    "retries": 1,
+    "retries": 3,
     "retry_delay": timedelta(minutes=10),
     "email_on_failure": False,
     "email_on_retry": False,

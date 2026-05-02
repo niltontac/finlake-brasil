@@ -14,7 +14,7 @@ from domain_cvm.ingestion.loaders_informe import ingest_informe_mensal
 
 _DEFAULT_ARGS: dict = {
     "owner": "domain_cvm",
-    "retries": 2,
+    "retries": 3,
     "retry_delay": timedelta(minutes=15),
     "email_on_failure": False,
     "email_on_retry": False,

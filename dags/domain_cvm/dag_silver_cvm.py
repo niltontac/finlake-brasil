@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from airflow.decorators import dag
 from airflow.operators.bash import BashOperator
@@ -10,7 +10,8 @@ from airflow.sensors.external_task import ExternalTaskSensor
 
 _DEFAULT_ARGS = {
     "owner": "domain_funds",
-    "retries": 1,
+    "retries": 3,
+    "retry_delay": timedelta(minutes=10),
 }
 
 _DBT_CMD = (
