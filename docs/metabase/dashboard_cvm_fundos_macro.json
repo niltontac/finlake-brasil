@@ -1,0 +1,714 @@
+{
+    "description": null,
+    "archived": false,
+    "view_count": 2,
+    "collection_position": null,
+    "dashcards": [
+        {
+            "size_x": 18,
+            "dashboard_tab_id": null,
+            "series": [],
+            "inline_parameters": [],
+            "action_id": null,
+            "collection_authority_level": null,
+            "card": {
+                "cache_invalidated_at": null,
+                "description": null,
+                "archived": false,
+                "view_count": 2,
+                "collection_position": null,
+                "source_card_id": null,
+                "table_id": null,
+                "result_metadata": [
+                    {
+                        "database_type": "date",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "ano_mes",
+                        "lib/original-name": "ano_mes",
+                        "name": "ano_mes",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "ano_mes",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "ano_mes",
+                            {
+                                "base-type": "type/Date"
+                            }
+                        ],
+                        "effective_type": "type/Date",
+                        "lib/desired-column-alias": "ano_mes",
+                        "display_name": "ano_mes",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 12,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/DateTime": {
+                                    "earliest": "2024-01-01",
+                                    "latest": "2024-12-01"
+                                }
+                            }
+                        },
+                        "base_type": "type/Date"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "rent_media_mercado",
+                        "lib/original-name": "rent_media_mercado",
+                        "name": "rent_media_mercado",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "rent_media_mercado",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "rent_media_mercado",
+                            {
+                                "base-type": "type/Decimal"
+                            }
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "rent_media_mercado",
+                        "display_name": "rent_media_mercado",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 12,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": -1.8621,
+                                    "q1": -0.8737999999999999,
+                                    "q3": 0.17975,
+                                    "max": 0.7619,
+                                    "sd": 0.7941039581589028,
+                                    "avg": -0.36879999999999996
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "selic_mensal",
+                        "lib/original-name": "selic_mensal",
+                        "name": "selic_mensal",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "selic_mensal",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "selic_mensal",
+                            {
+                                "base-type": "type/Decimal"
+                            }
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "selic_mensal",
+                        "display_name": "selic_mensal",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 9,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 0.8667,
+                                    "q1": 0.8698064755214563,
+                                    "q3": 0.9248000000000001,
+                                    "max": 0.9808,
+                                    "sd": 0.040510163333826885,
+                                    "avg": 0.9032666666666666
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    }
+                ],
+                "embedding_type": null,
+                "initially_published_at": null,
+                "can_write": true,
+                "card_schema": 23,
+                "database_id": 2,
+                "enable_embedding": false,
+                "collection_id": null,
+                "query_type": "native",
+                "download_perms": "full",
+                "name": "Rentabilidade m\u00e9dia vs SELIC mensal",
+                "document_id": null,
+                "last_used_at": "2026-05-01T21:40:56.035206-03:00",
+                "type": "question",
+                "dimensions": null,
+                "query_average_duration": 165,
+                "creator_id": 1,
+                "moderation_reviews": [],
+                "updated_at": "2026-05-01T21:34:06.573795-03:00",
+                "made_public_by_id": null,
+                "embedding_params": null,
+                "cache_ttl": null,
+                "dataset_query": {
+                    "lib/type": "mbql/query",
+                    "database": 2,
+                    "stages": [
+                        {
+                            "lib/type": "mbql.stage/native",
+                            "native": "SELECT ano_mes,\n    ROUND(AVG(rentabilidade_mes_pct)::numeric, 4) AS rent_media_mercado,\n    ROUND(MAX(taxa_anual_bcb / 12)::numeric, 4)   AS selic_mensal\nFROM gold_cvm.fundo_mensal\nWHERE meses_com_dados >= 6\n  AND rentabilidade_mes_pct BETWEEN -100 AND 500 AND taxa_anual_bcb IS NOT NULL\nGROUP BY ano_mes ORDER BY ano_mes"
+                        }
+                    ]
+                },
+                "dimension_mappings": null,
+                "id": 54,
+                "legacy_query": null,
+                "parameter_mappings": [],
+                "display": "line",
+                "archived_directly": false,
+                "entity_id": "5WX2kDQrT7IRWw2VYatuN",
+                "collection_preview": true,
+                "visualization_settings": {},
+                "metabase_version": "v0.60.2.5 (d9c91f2)",
+                "parameters": [],
+                "dashboard_id": null,
+                "created_at": "2026-05-01T21:34:06.573795-03:00",
+                "public_uuid": null
+            },
+            "updated_at": "2026-05-01T21:34:06.811389-03:00",
+            "col": 0,
+            "id": 52,
+            "parameter_mappings": [],
+            "card_id": 54,
+            "entity_id": "jslvHmBakuGgxas4oHeZV",
+            "visualization_settings": {},
+            "size_y": 8,
+            "dashboard_id": 6,
+            "created_at": "2026-05-01T21:34:06.811389-03:00",
+            "row": 0
+        },
+        {
+            "size_x": 18,
+            "dashboard_tab_id": null,
+            "series": [],
+            "inline_parameters": [],
+            "action_id": null,
+            "collection_authority_level": null,
+            "card": {
+                "cache_invalidated_at": null,
+                "description": null,
+                "archived": false,
+                "view_count": 2,
+                "collection_position": null,
+                "source_card_id": null,
+                "table_id": null,
+                "result_metadata": [
+                    {
+                        "database_type": "text",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "tp_fundo",
+                        "lib/original-name": "tp_fundo",
+                        "name": "tp_fundo",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "tp_fundo",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "tp_fundo",
+                            {
+                                "base-type": "type/Text"
+                            }
+                        ],
+                        "effective_type": "type/Text",
+                        "lib/desired-column-alias": "tp_fundo",
+                        "display_name": "tp_fundo",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 3,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Text": {
+                                    "percent-json": 0.0,
+                                    "percent-url": 0.0,
+                                    "percent-email": 0.0,
+                                    "percent-state": 0.0,
+                                    "average-length": 6.333333333333333
+                                }
+                            }
+                        },
+                        "base_type": "type/Text"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "alpha_selic_medio",
+                        "lib/original-name": "alpha_selic_medio",
+                        "name": "alpha_selic_medio",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "alpha_selic_medio",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "alpha_selic_medio",
+                            {
+                                "base-type": "type/Decimal"
+                            }
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "alpha_selic_medio",
+                        "display_name": "alpha_selic_medio",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 3,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": -1.4934,
+                                    "q1": -1.219225,
+                                    "q3": 37.483925,
+                                    "max": 50.1108,
+                                    "sd": 29.482208659856767,
+                                    "avg": 16.073566666666668
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    }
+                ],
+                "embedding_type": null,
+                "initially_published_at": null,
+                "can_write": true,
+                "card_schema": 23,
+                "database_id": 2,
+                "enable_embedding": false,
+                "collection_id": null,
+                "query_type": "native",
+                "download_perms": "full",
+                "name": "Alpha SELIC m\u00e9dio por categoria",
+                "document_id": null,
+                "last_used_at": "2026-05-01T21:40:56.035206-03:00",
+                "type": "question",
+                "dimensions": null,
+                "query_average_duration": 129,
+                "creator_id": 1,
+                "moderation_reviews": [],
+                "updated_at": "2026-05-01T21:34:06.596601-03:00",
+                "made_public_by_id": null,
+                "embedding_params": null,
+                "cache_ttl": null,
+                "dataset_query": {
+                    "lib/type": "mbql/query",
+                    "database": 2,
+                    "stages": [
+                        {
+                            "lib/type": "mbql.stage/native",
+                            "native": "SELECT tp_fundo, ROUND(AVG(alpha_selic)::numeric, 4) AS alpha_selic_medio\nFROM gold_cvm.fundo_mensal\nWHERE meses_com_dados >= 6 AND alpha_selic IS NOT NULL\nGROUP BY tp_fundo ORDER BY alpha_selic_medio DESC"
+                        }
+                    ]
+                },
+                "dimension_mappings": null,
+                "id": 55,
+                "legacy_query": null,
+                "parameter_mappings": [],
+                "display": "bar",
+                "archived_directly": false,
+                "entity_id": "U01G46y9-TyHAXijuvyBD",
+                "collection_preview": true,
+                "visualization_settings": {},
+                "metabase_version": "v0.60.2.5 (d9c91f2)",
+                "parameters": [],
+                "dashboard_id": null,
+                "created_at": "2026-05-01T21:34:06.596601-03:00",
+                "public_uuid": null
+            },
+            "updated_at": "2026-05-01T21:34:06.811389-03:00",
+            "col": 0,
+            "id": 53,
+            "parameter_mappings": [],
+            "card_id": 55,
+            "entity_id": "6RulixNWRuvL3eAvzxdn9",
+            "visualization_settings": {},
+            "size_y": 8,
+            "dashboard_id": 6,
+            "created_at": "2026-05-01T21:34:06.811389-03:00",
+            "row": 8
+        },
+        {
+            "size_x": 18,
+            "dashboard_tab_id": null,
+            "series": [],
+            "inline_parameters": [],
+            "action_id": null,
+            "collection_authority_level": null,
+            "card": {
+                "cache_invalidated_at": null,
+                "description": null,
+                "archived": false,
+                "view_count": 3,
+                "collection_position": null,
+                "source_card_id": null,
+                "table_id": null,
+                "result_metadata": [
+                    {
+                        "database_type": "date",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "ano_mes",
+                        "lib/original-name": "ano_mes",
+                        "name": "ano_mes",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "ano_mes",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "ano_mes",
+                            {
+                                "base-type": "type/Date"
+                            }
+                        ],
+                        "effective_type": "type/Date",
+                        "lib/desired-column-alias": "ano_mes",
+                        "display_name": "ano_mes",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 12,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/DateTime": {
+                                    "earliest": "2024-01-01",
+                                    "latest": "2024-12-01"
+                                }
+                            }
+                        },
+                        "base_type": "type/Date"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "pct_bateu_selic",
+                        "lib/original-name": "pct_bateu_selic",
+                        "name": "pct_bateu_selic",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "pct_bateu_selic",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "pct_bateu_selic",
+                            {
+                                "base-type": "type/Decimal"
+                            }
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "pct_bateu_selic",
+                        "display_name": "pct_bateu_selic",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 12,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 13.0,
+                                    "q1": 20.950000000000003,
+                                    "q3": 32.35,
+                                    "max": 74.7,
+                                    "sd": 17.62067484003328,
+                                    "avg": 30.149999999999995
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    }
+                ],
+                "embedding_type": null,
+                "initially_published_at": null,
+                "can_write": true,
+                "card_schema": 23,
+                "database_id": 2,
+                "enable_embedding": false,
+                "collection_id": null,
+                "query_type": "native",
+                "download_perms": "full",
+                "name": "% fundos que bateram a SELIC no m\u00eas",
+                "document_id": null,
+                "last_used_at": "2026-05-01T21:40:56.035206-03:00",
+                "type": "question",
+                "dimensions": null,
+                "query_average_duration": 147,
+                "creator_id": 1,
+                "moderation_reviews": [],
+                "updated_at": "2026-05-01T21:34:06.616829-03:00",
+                "made_public_by_id": null,
+                "embedding_params": null,
+                "cache_ttl": null,
+                "dataset_query": {
+                    "lib/type": "mbql/query",
+                    "database": 2,
+                    "stages": [
+                        {
+                            "lib/type": "mbql.stage/native",
+                            "native": "SELECT ano_mes,\n    ROUND(\n        100.0 * SUM(CASE WHEN alpha_selic > 0 THEN 1 ELSE 0 END)\n        / NULLIF(COUNT(*), 0)\n    ::numeric, 1) AS pct_bateu_selic\nFROM gold_cvm.fundo_mensal\nWHERE meses_com_dados >= 6 AND alpha_selic IS NOT NULL\nGROUP BY ano_mes ORDER BY ano_mes"
+                        }
+                    ]
+                },
+                "dimension_mappings": null,
+                "id": 56,
+                "legacy_query": null,
+                "parameter_mappings": [],
+                "display": "line",
+                "archived_directly": false,
+                "entity_id": "cauhayQ_O5ayifMGw4lnY",
+                "collection_preview": true,
+                "visualization_settings": {},
+                "metabase_version": "v0.60.2.5 (d9c91f2)",
+                "parameters": [],
+                "dashboard_id": null,
+                "created_at": "2026-05-01T21:34:06.616829-03:00",
+                "public_uuid": null
+            },
+            "updated_at": "2026-05-01T21:34:06.811389-03:00",
+            "col": 0,
+            "id": 54,
+            "parameter_mappings": [],
+            "card_id": 56,
+            "entity_id": "mkaBqGqxNUXZHPb5ymeN3",
+            "visualization_settings": {},
+            "size_y": 8,
+            "dashboard_id": 6,
+            "created_at": "2026-05-01T21:34:06.811389-03:00",
+            "row": 16
+        },
+        {
+            "size_x": 18,
+            "dashboard_tab_id": null,
+            "series": [],
+            "inline_parameters": [],
+            "action_id": null,
+            "collection_authority_level": null,
+            "card": {
+                "cache_invalidated_at": null,
+                "description": null,
+                "archived": false,
+                "view_count": 2,
+                "collection_position": null,
+                "source_card_id": null,
+                "table_id": null,
+                "result_metadata": [
+                    {
+                        "database_type": "date",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "ano_mes",
+                        "lib/original-name": "ano_mes",
+                        "name": "ano_mes",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "ano_mes",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "ano_mes",
+                            {
+                                "base-type": "type/Date"
+                            }
+                        ],
+                        "effective_type": "type/Date",
+                        "lib/desired-column-alias": "ano_mes",
+                        "display_name": "ano_mes",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 12,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/DateTime": {
+                                    "earliest": "2024-01-01",
+                                    "latest": "2024-12-01"
+                                }
+                            }
+                        },
+                        "base_type": "type/Date"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "rent_media_mercado",
+                        "lib/original-name": "rent_media_mercado",
+                        "name": "rent_media_mercado",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "rent_media_mercado",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "rent_media_mercado",
+                            {
+                                "base-type": "type/Decimal"
+                            }
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "rent_media_mercado",
+                        "display_name": "rent_media_mercado",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 12,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": -1.8621,
+                                    "q1": -0.8737999999999999,
+                                    "q3": 0.17975,
+                                    "max": 0.7619,
+                                    "sd": 0.7941039581589028,
+                                    "avg": -0.36879999999999996
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "ipca_mensal",
+                        "lib/original-name": "ipca_mensal",
+                        "name": "ipca_mensal",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "ipca_mensal",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "ipca_mensal",
+                            {
+                                "base-type": "type/Decimal"
+                            }
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "ipca_mensal",
+                        "display_name": "ipca_mensal",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 12,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 0.3073,
+                                    "q1": 0.33975,
+                                    "q3": 0.38605,
+                                    "max": 0.4061,
+                                    "sd": 0.031471067761685595,
+                                    "avg": 0.3638416666666667
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    }
+                ],
+                "embedding_type": null,
+                "initially_published_at": null,
+                "can_write": true,
+                "card_schema": 23,
+                "database_id": 2,
+                "enable_embedding": false,
+                "collection_id": null,
+                "query_type": "native",
+                "download_perms": "full",
+                "name": "IPCA 12m vs rentabilidade m\u00e9dia",
+                "document_id": null,
+                "last_used_at": "2026-05-01T21:40:56.035206-03:00",
+                "type": "question",
+                "dimensions": null,
+                "query_average_duration": 171,
+                "creator_id": 1,
+                "moderation_reviews": [],
+                "updated_at": "2026-05-01T21:34:06.640909-03:00",
+                "made_public_by_id": null,
+                "embedding_params": null,
+                "cache_ttl": null,
+                "dataset_query": {
+                    "lib/type": "mbql/query",
+                    "database": 2,
+                    "stages": [
+                        {
+                            "lib/type": "mbql.stage/native",
+                            "native": "SELECT ano_mes,\n    ROUND(AVG(rentabilidade_mes_pct)::numeric, 4)   AS rent_media_mercado,\n    ROUND(MAX(acumulado_12m_ipca / 12)::numeric, 4) AS ipca_mensal\nFROM gold_cvm.fundo_mensal\nWHERE meses_com_dados >= 6\n  AND rentabilidade_mes_pct BETWEEN -100 AND 500 AND acumulado_12m_ipca IS NOT NULL\nGROUP BY ano_mes ORDER BY ano_mes"
+                        }
+                    ]
+                },
+                "dimension_mappings": null,
+                "id": 57,
+                "legacy_query": null,
+                "parameter_mappings": [],
+                "display": "line",
+                "archived_directly": false,
+                "entity_id": "2aTmE1-gQddpPbIt8-1jS",
+                "collection_preview": true,
+                "visualization_settings": {},
+                "metabase_version": "v0.60.2.5 (d9c91f2)",
+                "parameters": [],
+                "dashboard_id": null,
+                "created_at": "2026-05-01T21:34:06.640909-03:00",
+                "public_uuid": null
+            },
+            "updated_at": "2026-05-01T21:34:06.811389-03:00",
+            "col": 0,
+            "id": 55,
+            "parameter_mappings": [],
+            "card_id": 57,
+            "entity_id": "3wyMyXq4ky-vrYwUsw-0g",
+            "visualization_settings": {},
+            "size_y": 8,
+            "dashboard_id": 6,
+            "created_at": "2026-05-01T21:34:06.811389-03:00",
+            "row": 24
+        }
+    ],
+    "embedding_type": null,
+    "initially_published_at": null,
+    "can_write": true,
+    "can_set_cache_policy": true,
+    "tabs": [],
+    "enable_embedding": false,
+    "collection_id": null,
+    "show_in_getting_started": false,
+    "name": "CVM \u2014 Fundos vs Macro",
+    "is_remote_synced": false,
+    "width": "fixed",
+    "caveats": null,
+    "collection_authority_level": null,
+    "creator_id": 1,
+    "can_restore": false,
+    "moderation_reviews": [],
+    "updated_at": "2026-05-01T21:34:06.689718-03:00",
+    "made_public_by_id": null,
+    "embedding_params": null,
+    "cache_ttl": null,
+    "last_used_param_values": {},
+    "id": 6,
+    "last_viewed_at": "2026-05-01T21:40:55.982728-03:00",
+    "position": null,
+    "archived_directly": false,
+    "entity_id": "u2Q_TBY4fQAB1ZjzsvnIk",
+    "param_fields": {},
+    "last-edit-info": {
+        "id": 1,
+        "email": "admin@finlake.local",
+        "first_name": "Nilton",
+        "last_name": "Coura",
+        "timestamp": "2026-05-01T21:34:06.827796-03:00"
+    },
+    "collection": {
+        "metabase.collections.models.collection.root/is-root?": true,
+        "authority_level": null,
+        "name": "Nossas an\u00e1lises",
+        "is_personal": false,
+        "id": "root",
+        "is_remote_synced": false,
+        "can_write": true
+    },
+    "parameters": [],
+    "auto_apply_filters": true,
+    "created_at": "2026-05-01T21:34:06.689718-03:00",
+    "public_uuid": null,
+    "points_of_interest": null,
+    "can_delete": false
+}
