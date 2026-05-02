@@ -64,6 +64,15 @@ cvm-hist-load: ## Carga histórica CVM via PySpark (START_YEAR=XXXX END_YEAR=XXX
 		--start-year $(START_YEAR) \
 		--end-year $(END_YEAR)
 
+
+
+
+
+
+
+metabase-setup-bcb: ## Cria dashboard BCB Macro via API do Metabase (requer 'make up PROFILE=full' e .env)
+	@set -a && . ./.env && set +a && python3 scripts/setup_metabase_bcb.py
+
 metabase-export: ## Exporta dashboard "BCB Macro" para docs/metabase/
 	@set -a && . ./.env && set +a && bash scripts/export_metabase.sh
 

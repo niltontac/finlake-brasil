@@ -1,0 +1,904 @@
+{
+    "description": null,
+    "archived": false,
+    "view_count": 3,
+    "collection_position": null,
+    "dashcards": [
+        {
+            "size_x": 18,
+            "dashboard_tab_id": null,
+            "series": [],
+            "inline_parameters": [],
+            "action_id": null,
+            "collection_authority_level": null,
+            "card": {
+                "cache_invalidated_at": null,
+                "description": null,
+                "archived": false,
+                "view_count": 3,
+                "collection_position": null,
+                "source_card_id": null,
+                "table_id": null,
+                "result_metadata": [
+                    {
+                        "database_type": "varchar",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "cnpj_fundo",
+                        "lib/original-name": "cnpj_fundo",
+                        "name": "cnpj_fundo",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "cnpj_fundo",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "cnpj_fundo",
+                            {
+                                "base-type": "type/Text"
+                            }
+                        ],
+                        "effective_type": "type/Text",
+                        "lib/desired-column-alias": "cnpj_fundo",
+                        "display_name": "cnpj_fundo",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 10,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Text": {
+                                    "percent-json": 0.0,
+                                    "percent-url": 0.0,
+                                    "percent-email": 0.0,
+                                    "percent-state": 0.0,
+                                    "average-length": 18.0
+                                }
+                            }
+                        },
+                        "base_type": "type/Text"
+                    },
+                    {
+                        "database_type": "text",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "gestor",
+                        "lib/original-name": "gestor",
+                        "name": "gestor",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "gestor",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "gestor",
+                            {
+                                "base-type": "type/Text"
+                            }
+                        ],
+                        "effective_type": "type/Text",
+                        "lib/desired-column-alias": "gestor",
+                        "display_name": "gestor",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 1,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Text": {
+                                    "percent-json": 0.0,
+                                    "percent-url": 0.0,
+                                    "percent-email": 0.0,
+                                    "percent-state": 0.0,
+                                    "average-length": 13.0
+                                }
+                            }
+                        },
+                        "base_type": "type/Text"
+                    },
+                    {
+                        "database_type": "date",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "ano_mes",
+                        "lib/original-name": "ano_mes",
+                        "name": "ano_mes",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "ano_mes",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "ano_mes",
+                            {
+                                "base-type": "type/Date"
+                            }
+                        ],
+                        "effective_type": "type/Date",
+                        "lib/desired-column-alias": "ano_mes",
+                        "display_name": "ano_mes",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 7,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/DateTime": {
+                                    "earliest": "2024-01-01",
+                                    "latest": "2024-11-01"
+                                }
+                            }
+                        },
+                        "base_type": "type/Date"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "rentabilidade_mes_pct",
+                        "lib/original-name": "rentabilidade_mes_pct",
+                        "name": "rentabilidade_mes_pct",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "rentabilidade_mes_pct",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "rentabilidade_mes_pct",
+                            {
+                                "base-type": "type/Decimal"
+                            }
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "rentabilidade_mes_pct",
+                        "display_name": "rentabilidade_mes_pct",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 10,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 282.6153,
+                                    "q1": 309.9641,
+                                    "q3": 404.5439,
+                                    "max": 447.1518,
+                                    "sd": 59.061671664854785,
+                                    "avg": 358.99325999999996
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    }
+                ],
+                "embedding_type": null,
+                "initially_published_at": null,
+                "can_write": true,
+                "card_schema": 23,
+                "database_id": 2,
+                "enable_embedding": false,
+                "collection_id": null,
+                "query_type": "native",
+                "download_perms": "full",
+                "name": "Top 10 fundos por rentabilidade",
+                "document_id": null,
+                "last_used_at": "2026-05-01T21:40:35.273326-03:00",
+                "type": "question",
+                "dimensions": null,
+                "query_average_duration": 217,
+                "creator_id": 1,
+                "moderation_reviews": [],
+                "updated_at": "2026-05-01T21:34:06.445225-03:00",
+                "made_public_by_id": null,
+                "embedding_params": null,
+                "cache_ttl": null,
+                "dataset_query": {
+                    "lib/type": "mbql/query",
+                    "database": 2,
+                    "stages": [
+                        {
+                            "lib/type": "mbql.stage/native",
+                            "native": "SELECT cnpj_fundo, COALESCE(gestor, 'N\u00e3o informado') AS gestor,\n    ano_mes, ROUND(rentabilidade_mes_pct::numeric, 4) AS rentabilidade_mes_pct\nFROM gold_cvm.fundo_mensal\nWHERE meses_com_dados >= 6 AND rentabilidade_mes_pct BETWEEN -100 AND 500\nORDER BY rentabilidade_mes_pct DESC LIMIT 10"
+                        }
+                    ]
+                },
+                "dimension_mappings": null,
+                "id": 49,
+                "legacy_query": null,
+                "parameter_mappings": [],
+                "display": "table",
+                "archived_directly": false,
+                "entity_id": "mEDzuTXWdTZa8P825GeoJ",
+                "collection_preview": true,
+                "visualization_settings": {},
+                "metabase_version": "v0.60.2.5 (d9c91f2)",
+                "parameters": [],
+                "dashboard_id": null,
+                "created_at": "2026-05-01T21:34:06.445225-03:00",
+                "public_uuid": null
+            },
+            "updated_at": "2026-05-01T21:34:06.781811-03:00",
+            "col": 0,
+            "id": 47,
+            "parameter_mappings": [],
+            "card_id": 49,
+            "entity_id": "mdQoP6ZdTLzHGDz6VV32T",
+            "visualization_settings": {},
+            "size_y": 8,
+            "dashboard_id": 5,
+            "created_at": "2026-05-01T21:34:06.781811-03:00",
+            "row": 0
+        },
+        {
+            "size_x": 9,
+            "dashboard_tab_id": null,
+            "series": [],
+            "inline_parameters": [],
+            "action_id": null,
+            "collection_authority_level": null,
+            "card": {
+                "cache_invalidated_at": null,
+                "description": null,
+                "archived": false,
+                "view_count": 3,
+                "collection_position": null,
+                "source_card_id": null,
+                "table_id": null,
+                "result_metadata": [
+                    {
+                        "database_type": "text",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "tp_fundo",
+                        "lib/original-name": "tp_fundo",
+                        "name": "tp_fundo",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "tp_fundo",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "tp_fundo",
+                            {
+                                "base-type": "type/Text"
+                            }
+                        ],
+                        "effective_type": "type/Text",
+                        "lib/desired-column-alias": "tp_fundo",
+                        "display_name": "tp_fundo",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 3,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Text": {
+                                    "percent-json": 0.0,
+                                    "percent-url": 0.0,
+                                    "percent-email": 0.0,
+                                    "percent-state": 0.0,
+                                    "average-length": 6.333333333333333
+                                }
+                            }
+                        },
+                        "base_type": "type/Text"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "alpha_selic_medio",
+                        "lib/original-name": "alpha_selic_medio",
+                        "name": "alpha_selic_medio",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "alpha_selic_medio",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "alpha_selic_medio",
+                            {
+                                "base-type": "type/Decimal"
+                            }
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "alpha_selic_medio",
+                        "display_name": "alpha_selic_medio",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 3,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": -1.4934,
+                                    "q1": -1.219225,
+                                    "q3": 37.483925,
+                                    "max": 50.1108,
+                                    "sd": 29.482208659856767,
+                                    "avg": 16.073566666666668
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    }
+                ],
+                "embedding_type": null,
+                "initially_published_at": null,
+                "can_write": true,
+                "card_schema": 23,
+                "database_id": 2,
+                "enable_embedding": false,
+                "collection_id": null,
+                "query_type": "native",
+                "download_perms": "full",
+                "name": "Alpha SELIC m\u00e9dio por tipo de fundo",
+                "document_id": null,
+                "last_used_at": "2026-05-01T21:40:35.273326-03:00",
+                "type": "question",
+                "dimensions": null,
+                "query_average_duration": 129,
+                "creator_id": 1,
+                "moderation_reviews": [],
+                "updated_at": "2026-05-01T21:34:06.46827-03:00",
+                "made_public_by_id": null,
+                "embedding_params": null,
+                "cache_ttl": null,
+                "dataset_query": {
+                    "lib/type": "mbql/query",
+                    "database": 2,
+                    "stages": [
+                        {
+                            "lib/type": "mbql.stage/native",
+                            "native": "SELECT tp_fundo, ROUND(AVG(alpha_selic)::numeric, 4) AS alpha_selic_medio\nFROM gold_cvm.fundo_mensal\nWHERE meses_com_dados >= 6 AND alpha_selic IS NOT NULL\nGROUP BY tp_fundo ORDER BY alpha_selic_medio DESC"
+                        }
+                    ]
+                },
+                "dimension_mappings": null,
+                "id": 50,
+                "legacy_query": null,
+                "parameter_mappings": [],
+                "display": "bar",
+                "archived_directly": false,
+                "entity_id": "Q5hibsKXL_Nse-FO5zFmE",
+                "collection_preview": true,
+                "visualization_settings": {},
+                "metabase_version": "v0.60.2.5 (d9c91f2)",
+                "parameters": [],
+                "dashboard_id": null,
+                "created_at": "2026-05-01T21:34:06.46827-03:00",
+                "public_uuid": null
+            },
+            "updated_at": "2026-05-01T21:34:06.781811-03:00",
+            "col": 0,
+            "id": 48,
+            "parameter_mappings": [],
+            "card_id": 50,
+            "entity_id": "p5fdYNChDFfbnqXEtlRAw",
+            "visualization_settings": {},
+            "size_y": 8,
+            "dashboard_id": 5,
+            "created_at": "2026-05-01T21:34:06.781811-03:00",
+            "row": 8
+        },
+        {
+            "size_x": 9,
+            "dashboard_tab_id": null,
+            "series": [],
+            "inline_parameters": [],
+            "action_id": null,
+            "collection_authority_level": null,
+            "card": {
+                "cache_invalidated_at": null,
+                "description": null,
+                "archived": false,
+                "view_count": 4,
+                "collection_position": null,
+                "source_card_id": null,
+                "table_id": null,
+                "result_metadata": [
+                    {
+                        "database_type": "text",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "tp_fundo",
+                        "lib/original-name": "tp_fundo",
+                        "name": "tp_fundo",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "tp_fundo",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "tp_fundo",
+                            {
+                                "base-type": "type/Text"
+                            }
+                        ],
+                        "effective_type": "type/Text",
+                        "lib/desired-column-alias": "tp_fundo",
+                        "display_name": "tp_fundo",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 3,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Text": {
+                                    "percent-json": 0.0,
+                                    "percent-url": 0.0,
+                                    "percent-email": 0.0,
+                                    "percent-state": 0.0,
+                                    "average-length": 6.333333333333333
+                                }
+                            }
+                        },
+                        "base_type": "type/Text"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "alpha_ipca_medio",
+                        "lib/original-name": "alpha_ipca_medio",
+                        "name": "alpha_ipca_medio",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "alpha_ipca_medio",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "alpha_ipca_medio",
+                            {
+                                "base-type": "type/Decimal"
+                            }
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "alpha_ipca_medio",
+                        "display_name": "alpha_ipca_medio",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 3,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": -0.9615,
+                                    "q1": -0.68545,
+                                    "q3": 38.023475,
+                                    "max": 50.6504,
+                                    "sd": 29.484558779526164,
+                                    "avg": 16.610533333333333
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    }
+                ],
+                "embedding_type": null,
+                "initially_published_at": null,
+                "can_write": true,
+                "card_schema": 23,
+                "database_id": 2,
+                "enable_embedding": false,
+                "collection_id": null,
+                "query_type": "native",
+                "download_perms": "full",
+                "name": "Alpha IPCA m\u00e9dio por tipo de fundo",
+                "document_id": null,
+                "last_used_at": "2026-05-01T21:40:35.273326-03:00",
+                "type": "question",
+                "dimensions": null,
+                "query_average_duration": 104,
+                "creator_id": 1,
+                "moderation_reviews": [],
+                "updated_at": "2026-05-01T21:34:06.492167-03:00",
+                "made_public_by_id": null,
+                "embedding_params": null,
+                "cache_ttl": null,
+                "dataset_query": {
+                    "lib/type": "mbql/query",
+                    "database": 2,
+                    "stages": [
+                        {
+                            "lib/type": "mbql.stage/native",
+                            "native": "SELECT tp_fundo, ROUND(AVG(alpha_ipca)::numeric, 4) AS alpha_ipca_medio\nFROM gold_cvm.fundo_mensal\nWHERE meses_com_dados >= 6 AND alpha_ipca IS NOT NULL\nGROUP BY tp_fundo ORDER BY alpha_ipca_medio DESC"
+                        }
+                    ]
+                },
+                "dimension_mappings": null,
+                "id": 51,
+                "legacy_query": null,
+                "parameter_mappings": [],
+                "display": "bar",
+                "archived_directly": false,
+                "entity_id": "cFt91W5t-2dtZqOP2ienw",
+                "collection_preview": true,
+                "visualization_settings": {},
+                "metabase_version": "v0.60.2.5 (d9c91f2)",
+                "parameters": [],
+                "dashboard_id": null,
+                "created_at": "2026-05-01T21:34:06.492167-03:00",
+                "public_uuid": null
+            },
+            "updated_at": "2026-05-01T21:34:06.781811-03:00",
+            "col": 9,
+            "id": 49,
+            "parameter_mappings": [],
+            "card_id": 51,
+            "entity_id": "XWZnMikHc1znxh_mR5CNP",
+            "visualization_settings": {},
+            "size_y": 8,
+            "dashboard_id": 5,
+            "created_at": "2026-05-01T21:34:06.781811-03:00",
+            "row": 8
+        },
+        {
+            "size_x": 18,
+            "dashboard_tab_id": null,
+            "series": [],
+            "inline_parameters": [],
+            "action_id": null,
+            "collection_authority_level": null,
+            "card": {
+                "cache_invalidated_at": null,
+                "description": null,
+                "archived": false,
+                "view_count": 3,
+                "collection_position": null,
+                "source_card_id": null,
+                "table_id": null,
+                "result_metadata": [
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "rentabilidade_mes_pct",
+                        "lib/original-name": "rentabilidade_mes_pct",
+                        "name": "rentabilidade_mes_pct",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "rentabilidade_mes_pct",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "rentabilidade_mes_pct",
+                            {
+                                "base-type": "type/Decimal"
+                            }
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "rentabilidade_mes_pct",
+                        "display_name": "rentabilidade_mes_pct",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 1992,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": -100.0,
+                                    "q1": -0.3964434662605717,
+                                    "q3": 0.9588869032453147,
+                                    "max": 24.504762,
+                                    "sd": 6.803599931982463,
+                                    "avg": -0.29095068699999993
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    }
+                ],
+                "embedding_type": null,
+                "initially_published_at": null,
+                "can_write": true,
+                "card_schema": 23,
+                "database_id": 2,
+                "enable_embedding": false,
+                "collection_id": null,
+                "query_type": "native",
+                "download_perms": "full",
+                "name": "Distribui\u00e7\u00e3o de rentabilidade mensal",
+                "document_id": null,
+                "last_used_at": "2026-05-01T21:40:35.273326-03:00",
+                "type": "question",
+                "dimensions": null,
+                "query_average_duration": 79,
+                "creator_id": 1,
+                "moderation_reviews": [],
+                "updated_at": "2026-05-01T21:34:06.516666-03:00",
+                "made_public_by_id": null,
+                "embedding_params": null,
+                "cache_ttl": null,
+                "dataset_query": {
+                    "lib/type": "mbql/query",
+                    "database": 2,
+                    "stages": [
+                        {
+                            "lib/type": "mbql.stage/native",
+                            "native": "SELECT rentabilidade_mes_pct FROM gold_cvm.fundo_mensal\nWHERE meses_com_dados >= 6 AND rentabilidade_mes_pct BETWEEN -100 AND 500"
+                        }
+                    ]
+                },
+                "dimension_mappings": null,
+                "id": 52,
+                "legacy_query": null,
+                "parameter_mappings": [],
+                "display": "bar",
+                "archived_directly": false,
+                "entity_id": "G7A3pqMX1FtU6_zaG2-b_",
+                "collection_preview": true,
+                "visualization_settings": {},
+                "metabase_version": "v0.60.2.5 (d9c91f2)",
+                "parameters": [],
+                "dashboard_id": null,
+                "created_at": "2026-05-01T21:34:06.516666-03:00",
+                "public_uuid": null
+            },
+            "updated_at": "2026-05-01T21:34:06.781811-03:00",
+            "col": 0,
+            "id": 50,
+            "parameter_mappings": [],
+            "card_id": 52,
+            "entity_id": "cd0Ul8UcyOfzsqz2RpBqO",
+            "visualization_settings": {},
+            "size_y": 8,
+            "dashboard_id": 5,
+            "created_at": "2026-05-01T21:34:06.781811-03:00",
+            "row": 16
+        },
+        {
+            "size_x": 18,
+            "dashboard_tab_id": null,
+            "series": [],
+            "inline_parameters": [],
+            "action_id": null,
+            "collection_authority_level": null,
+            "card": {
+                "cache_invalidated_at": null,
+                "description": null,
+                "archived": false,
+                "view_count": 3,
+                "collection_position": null,
+                "source_card_id": null,
+                "table_id": null,
+                "result_metadata": [
+                    {
+                        "database_type": "text",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "gestor",
+                        "lib/original-name": "gestor",
+                        "name": "gestor",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "gestor",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "gestor",
+                            {
+                                "base-type": "type/Text"
+                            }
+                        ],
+                        "effective_type": "type/Text",
+                        "lib/desired-column-alias": "gestor",
+                        "display_name": "gestor",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 3,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Text": {
+                                    "percent-json": 0.0,
+                                    "percent-url": 0.0,
+                                    "percent-email": 0.0,
+                                    "percent-state": 0.0,
+                                    "average-length": 38.666666666666664
+                                }
+                            }
+                        },
+                        "base_type": "type/Text"
+                    },
+                    {
+                        "database_type": "int8",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "qtd_fundos",
+                        "lib/original-name": "qtd_fundos",
+                        "name": "qtd_fundos",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "qtd_fundos",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "qtd_fundos",
+                            {
+                                "base-type": "type/BigInteger"
+                            }
+                        ],
+                        "effective_type": "type/BigInteger",
+                        "lib/desired-column-alias": "qtd_fundos",
+                        "display_name": "qtd_fundos",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 2,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 2.0,
+                                    "q1": 2.0,
+                                    "q3": 2.775255128608411,
+                                    "max": 3.0,
+                                    "sd": 0.5773502691896258,
+                                    "avg": 2.3333333333333335
+                                }
+                            }
+                        },
+                        "base_type": "type/BigInteger"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "alpha_selic_medio",
+                        "lib/original-name": "alpha_selic_medio",
+                        "name": "alpha_selic_medio",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "alpha_selic_medio",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "alpha_selic_medio",
+                            {
+                                "base-type": "type/Decimal"
+                            }
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "alpha_selic_medio",
+                        "display_name": "alpha_selic_medio",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 3,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": -31.504,
+                                    "q1": -29.078125,
+                                    "q3": -5.587975,
+                                    "max": -0.1838,
+                                    "sd": 16.033270404484963,
+                                    "avg": -17.829433333333334
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    },
+                    {
+                        "database_type": "numeric",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "pl_medio",
+                        "lib/original-name": "pl_medio",
+                        "name": "pl_medio",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "pl_medio",
+                        "source": "native",
+                        "field_ref": [
+                            "field",
+                            "pl_medio",
+                            {
+                                "base-type": "type/Decimal"
+                            }
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "pl_medio",
+                        "display_name": "pl_medio",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 3,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 1784939.0,
+                                    "q1": 9187274.0,
+                                    "q3": 45925784.0,
+                                    "max": 50769619.0,
+                                    "sd": 24669872.61841725,
+                                    "avg": 27982945.666666668
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
+                    }
+                ],
+                "embedding_type": null,
+                "initially_published_at": null,
+                "can_write": true,
+                "card_schema": 23,
+                "database_id": 2,
+                "enable_embedding": false,
+                "collection_id": null,
+                "query_type": "native",
+                "download_perms": "full",
+                "name": "Top 10 gestores por Alpha SELIC",
+                "document_id": null,
+                "last_used_at": "2026-05-01T21:40:35.273326-03:00",
+                "type": "question",
+                "dimensions": null,
+                "query_average_duration": 162,
+                "creator_id": 1,
+                "moderation_reviews": [],
+                "updated_at": "2026-05-01T21:34:06.547511-03:00",
+                "made_public_by_id": null,
+                "embedding_params": null,
+                "cache_ttl": null,
+                "dataset_query": {
+                    "lib/type": "mbql/query",
+                    "database": 2,
+                    "stages": [
+                        {
+                            "lib/type": "mbql.stage/native",
+                            "native": "SELECT COALESCE(gestor, 'N\u00e3o informado') AS gestor,\n    COUNT(DISTINCT cnpj_fundo) AS qtd_fundos,\n    ROUND(AVG(alpha_selic)::numeric, 4) AS alpha_selic_medio,\n    ROUND(AVG(vl_patrim_liq_medio)::numeric, 0) AS pl_medio\nFROM gold_cvm.fundo_mensal\nWHERE meses_com_dados >= 6 AND alpha_selic IS NOT NULL AND gestor IS NOT NULL\nGROUP BY gestor HAVING COUNT(DISTINCT cnpj_fundo) >= 2\nORDER BY alpha_selic_medio DESC LIMIT 10"
+                        }
+                    ]
+                },
+                "dimension_mappings": null,
+                "id": 53,
+                "legacy_query": null,
+                "parameter_mappings": [],
+                "display": "table",
+                "archived_directly": false,
+                "entity_id": "FA3BgQnFBhXh-4a12XFP6",
+                "collection_preview": true,
+                "visualization_settings": {},
+                "metabase_version": "v0.60.2.5 (d9c91f2)",
+                "parameters": [],
+                "dashboard_id": null,
+                "created_at": "2026-05-01T21:34:06.547511-03:00",
+                "public_uuid": null
+            },
+            "updated_at": "2026-05-01T21:34:06.781811-03:00",
+            "col": 0,
+            "id": 51,
+            "parameter_mappings": [],
+            "card_id": 53,
+            "entity_id": "fqfCrWLw8J06r09IvsSZU",
+            "visualization_settings": {},
+            "size_y": 8,
+            "dashboard_id": 5,
+            "created_at": "2026-05-01T21:34:06.781811-03:00",
+            "row": 24
+        }
+    ],
+    "embedding_type": null,
+    "initially_published_at": null,
+    "can_write": true,
+    "can_set_cache_policy": true,
+    "tabs": [],
+    "enable_embedding": false,
+    "collection_id": null,
+    "show_in_getting_started": false,
+    "name": "CVM \u2014 Rentabilidade",
+    "is_remote_synced": false,
+    "width": "fixed",
+    "caveats": null,
+    "collection_authority_level": null,
+    "creator_id": 1,
+    "can_restore": false,
+    "moderation_reviews": [],
+    "updated_at": "2026-05-01T21:34:06.674802-03:00",
+    "made_public_by_id": null,
+    "embedding_params": null,
+    "cache_ttl": null,
+    "last_used_param_values": {},
+    "id": 5,
+    "last_viewed_at": "2026-05-01T21:40:35.228336-03:00",
+    "position": null,
+    "archived_directly": false,
+    "entity_id": "h7tM0x-Eu5-m8hIaMl7Bg",
+    "param_fields": {},
+    "last-edit-info": {
+        "id": 1,
+        "email": "admin@finlake.local",
+        "first_name": "Nilton",
+        "last_name": "Coura",
+        "timestamp": "2026-05-01T21:34:06.788967-03:00"
+    },
+    "collection": {
+        "metabase.collections.models.collection.root/is-root?": true,
+        "authority_level": null,
+        "name": "Nossas an\u00e1lises",
+        "is_personal": false,
+        "id": "root",
+        "is_remote_synced": false,
+        "can_write": true
+    },
+    "parameters": [],
+    "auto_apply_filters": true,
+    "created_at": "2026-05-01T21:34:06.674802-03:00",
+    "public_uuid": null,
+    "points_of_interest": null,
+    "can_delete": false
+}
