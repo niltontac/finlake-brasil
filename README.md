@@ -482,7 +482,7 @@ Essa abordagem produz documentação de raciocínio arquitetural — não apenas
 Senior Data Engineer com foco em AI-ready data platforms, Medallion Architecture e Data Mesh — atualmente expandindo especialização para AI Data Engineering com LLMs, agentes e pipelines inteligentes.
 
 [![GitHub](https://img.shields.io/badge/GitHub-niltontac-181717?logo=github)](https://github.com/niltontac)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-niltoncoura-0A66C2?logo=linkedin)](https://linkedin.com/in/niltoncoura)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-niltoncoura-0A66C2?logo=linkedin)](https://linkedin.com/in/niltontac)
 
 ---
 
