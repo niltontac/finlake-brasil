@@ -50,7 +50,7 @@ Plataformas financeiras de dados são o ambiente mais exigente para um Data Engi
 │  │  └────────┬─────────┘    │    │  └──────────┬───────────────┘   │  │
 │  │           │ dbt          │    │             │ dbt               │  │
 │  │  ┌────────▼─────────┐    │    │  ┌──────────▼───────────────┐   │  │
-│  │  │ GOLD             │◄───┼────┼──│ GOLD (cross-domain)      │   │  │
+│  │  │ GOLD             │────┼────┼──► GOLD (cross-domain)      │   │  │
 │  │  │ gold_bcb.*       │    │    │  │ gold_cvm.fundo_diario     │   │  │
 │  │  │ macro_diario     │    │    │  │ gold_cvm.fundo_mensal     │   │  │
 │  │  │ macro_mensal     │    │    │  │ alpha_selic · alpha_ipca  │   │  │
@@ -67,7 +67,7 @@ Plataformas financeiras de dados são o ambiente mais exigente para um Data Engi
 │                    └─────────────────┘                                 │
 │                                                                         │
 │  Orquestração: Apache Airflow 2.10.4  (localhost:8080)                 │
-│  Storage: PostgreSQL 15              (localhost:5433)                  │
+│  Storage: PostgreSQL 15              (localhost:5432)                  │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -123,6 +123,7 @@ Portal público: `https://dados.cvm.gov.br/`
 | Visualização | Metabase | latest | Dashboards analíticos |
 | Containerização | Docker Compose | — | Profiles: default e full |
 | Ingestão BCB | python-bcb | latest | Cliente da API SGS |
+| Pacotes | uv | latest | Gerenciamento de dependências |
 
 ---
 
@@ -174,14 +175,14 @@ O schema do informe mudou em 2024 (campo `CNPJ_FUNDO_CLASSE`). O loader normaliz
 
 **Silver** — `schema: silver_cvm`
 
-DAG `dag_silver_cvm` · depende do Bronze CVM
+DAG `dag_silver_cvm` · `@daily` · depende do Bronze CVM
 
 - `silver_cvm.fundos` — universo de fundos operacionais: `EM FUNCIONAMENTO NORMAL` + `EM LIQUIDAÇÃO`. Fundos cancelados (maioria do histórico desde os anos 90) ficam fora.
-- `silver_cvm.informe` — série temporal limpa com tipos corretos e valores validados. JOIN com cadastro feito aqui — fundos sem match no cadastro são marcados como `fundo_sem_cadastro` mas não descartados (dado real tem gaps).
+- `silver_cvm.informe_diario` — série temporal limpa com tipos corretos e valores validados. JOIN com cadastro feito aqui — fundos sem match no cadastro são marcados como `fundo_sem_cadastro` mas não descartados (dado real tem gaps).
 
 **Gold** — `schema: gold_cvm`
 
-DAG `dag_gold_cvm` · depende de `dag_silver_cvm` e `dag_gold_bcb` (paralelos)
+DAG `dag_gold_cvm` · `@daily` · depende de `dag_silver_cvm` e `dag_gold_bcb` (paralelos)
 
 - `fundo_diario` — 6.514.571 rows. Rentabilidade diária via LAG na cota. `NUMERIC(20,6)` para cobrir outliers extremos de fundos que começam com cota próxima de zero.
 - `fundo_mensal` — 312.772 rows. Agrega o informe diário por mês: PL médio, captação líquida, rentabilidade mensal. Cross-domain: `alpha_selic` e `alpha_ipca` calculados via JOIN com `gold_bcb.macro_mensal`.
@@ -264,22 +265,34 @@ finlake-brasil/
 │   ├── profiles.yml
 │   └── models/
 │       ├── domain_bcb/
-│       │   ├── silver/
+│       │   ├── selic_daily.sql       # Silver
+│       │   ├── ipca_monthly.sql      # Silver
+│       │   ├── ptax_daily.sql        # Silver
+│       │   ├── schema.yml
+│       │   ├── sources.yml
 │       │   └── gold/
 │       └── domain_cvm/
-│           ├── silver/
+│           ├── fundos.sql            # Silver
+│           ├── informe_diario.sql    # Silver
+│           ├── schema.yml
+│           ├── sources.yml
 │           └── gold/
 │
 ├── scripts/
 │   ├── setup_metabase_bcb.py         # Cria dashboard BCB via API
 │   ├── setup_metabase_cvm.py         # Cria 3 dashboards CVM via API
-│   ├── export_metabase_bcb.sh        # Exporta JSONs BCB
-│   └── export_metabase_cvm.sh        # Exporta JSONs CVM
+│   ├── export_metabase.sh            # Exporta JSONs BCB
+│   ├── export_metabase_cvm.sh        # Exporta JSONs CVM
+│   └── spark/
+│       └── historical_load_cvm.py    # Backfill histórico CVM via PySpark (2000–atual)
 │
 ├── docker/
 │   ├── airflow/
 │   │   ├── Dockerfile
 │   │   └── requirements.txt
+│   ├── postgres/
+│   │   ├── init.sql
+│   │   └── migrations/
 │   ├── compose.postgres.yml
 │   ├── compose.airflow.yml
 │   └── compose.metabase.yml
@@ -292,6 +305,9 @@ finlake-brasil/
 │   │   ├── test_bcb_client.py
 │   │   └── test_loaders.py
 │   └── domain_cvm/
+│       ├── test_cvm_client.py
+│       ├── test_loaders_cadastro.py
+│       └── test_loaders_informe.py
 │
 ├── .claude/
 │   └── sdd/archive/                  # Artefatos SDD de cada feature
@@ -308,6 +324,7 @@ finlake-brasil/
 ├── docker-compose.yml                # Entry point (profiles: default, full)
 ├── Makefile                          # Comandos operacionais
 ├── pyproject.toml
+├── uv.lock
 ├── CLAUDE.md                         # Contexto do projeto para agentes AI
 ├── .env.example
 └── .gitignore
@@ -323,6 +340,7 @@ finlake-brasil/
 
 - Docker Desktop com pelo menos 4GB de RAM alocada
 - Python 3.12
+- [uv](https://docs.astral.sh/uv/) — gerenciador de pacotes (`pip install uv`)
 - Git
 
 ### 1. Clone o repositório
@@ -365,7 +383,7 @@ Abra `http://localhost:8080`
 
 Credenciais: definidas no `.env` (padrão: `admin` / ver `.env.example`)
 
-Você verá 8 DAGs disponíveis. Ative-as na seguinte ordem para garantir as dependências:
+Você verá 7 DAGs disponíveis. Ative-as na seguinte ordem para garantir as dependências:
 
 ```
 1. dag_bronze_bcb          → aguardar conclusão
@@ -415,6 +433,9 @@ finlake (database)
 │   └── ptax_daily
 │
 ├── silver_bcb          # Dados BCB limpos (dbt)
+│   ├── selic_daily
+│   ├── ipca_monthly
+│   └── ptax_daily
 │
 ├── gold_bcb            # Métricas macroeconômicas (dbt)
 │   ├── macro_diario
@@ -426,7 +447,7 @@ finlake (database)
 │
 ├── silver_cvm          # Dados CVM limpos (dbt)
 │   ├── fundos
-│   └── informe
+│   └── informe_diario
 │
 └── gold_cvm            # Métricas de fundos + cross-domain (dbt)
     ├── fundo_diario    # ~6.5M rows
@@ -471,7 +492,7 @@ Essa abordagem produz documentação de raciocínio arquitetural — não apenas
 ### Próximas features 🚀
 - [ ] AI Engineering Layer — agentes de análise financeira sobre os dados Gold
 - [ ] Data Quality Monitoring — alertas automáticos via dbt e Airflow
-- [ ] Historical CVM — expansão do informe para anos anteriores a 2024
+- [x] HISTORICAL_CVM — backfill PySpark do informe diário desde 2000 (`scripts/spark/historical_load_cvm.py`)
 
 ---
 

@@ -5,7 +5,7 @@ Uso:
         --start-year 2000 --end-year 2024
 
 Variáveis de ambiente obrigatórias:
-    FINLAKE_JDBC_URL      jdbc:postgresql://localhost:5433/finlake
+    FINLAKE_JDBC_URL      jdbc:postgresql://localhost:5432/finlake
     FINLAKE_JDBC_USER     postgres
     FINLAKE_JDBC_PASSWORD <senha>
 """
@@ -130,7 +130,7 @@ def main() -> None:
 
     pg_props = {
         "host":     "localhost",
-        "port":     5433,
+        "port":     int(os.environ.get("POSTGRES_PORT", "5432")),
         "dbname":   "finlake",
         "user":     os.environ["FINLAKE_JDBC_USER"],
         "password": os.environ["FINLAKE_JDBC_PASSWORD"],

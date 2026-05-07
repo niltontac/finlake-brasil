@@ -4,7 +4,7 @@ finlake:
     dev:
       type: postgres
       host: localhost
-      port: 5433
+      port: 5432
       user: "{{ env_var('POSTGRES_USER') }}"
       password: "{{ env_var('POSTGRES_PASSWORD') }}"
       dbname: finlake
