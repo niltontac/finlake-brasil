@@ -55,8 +55,8 @@ Plataforma de dados financeiros brasileiros end-to-end com dados reais do Banco 
 - Nenhum dado sensível commitado no repositório
 
 ## Infraestrutura Local
-- PostgreSQL 15: postgresql://postgres:***REMOVED***@localhost:5433/finlake
-- Airflow: http://localhost:8080 (admin/***REMOVED***)
+- PostgreSQL 15: postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5433/finlake (ver .env)
+- Airflow: http://localhost:8080 (usuário admin, senha em .env)
 - Metabase: http://localhost:3030
 - Subir tudo: `make up` (docker compose --profile full up -d)
 
