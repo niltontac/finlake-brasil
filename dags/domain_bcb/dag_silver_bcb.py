@@ -61,7 +61,7 @@ def dag_silver_bcb() -> None:
         task_id="wait_bronze_bcb",
         external_dag_id="dag_bronze_bcb",
         external_task_id=None,
-        timeout=3600,
+        timeout=7200,
         mode="reschedule",
         poke_interval=60,
     )

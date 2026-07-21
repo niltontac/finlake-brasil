@@ -64,7 +64,7 @@ def dag_gold_cvm() -> None:
         task_id="wait_silver_cvm",
         external_dag_id="dag_silver_cvm",
         external_task_id=None,
-        timeout=3600,
+        timeout=7200,
         mode="reschedule",
         poke_interval=60,
     )
@@ -73,7 +73,7 @@ def dag_gold_cvm() -> None:
         task_id="wait_gold_bcb",
         external_dag_id="dag_gold_bcb",
         external_task_id=None,
-        timeout=3600,
+        timeout=7200,
         mode="reschedule",
         poke_interval=60,
     )

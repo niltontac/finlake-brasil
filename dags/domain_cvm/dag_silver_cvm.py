@@ -41,7 +41,7 @@ def dag_silver_cvm() -> None:
         task_id="wait_bronze_cvm_cadastro",
         external_dag_id="dag_bronze_cvm_cadastro",
         external_task_id=None,
-        timeout=3600,
+        timeout=7200,
         mode="reschedule",
         poke_interval=60,
     )
