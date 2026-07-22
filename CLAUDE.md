@@ -23,7 +23,7 @@ Plataforma de dados financeiros brasileiros end-to-end com dados reais do Banco 
 - Fonte: Portal de Dados Abertos da CVM (dados.cvm.gov.br)
 - Dados: cadastro de fundos (SCD Tipo 1, overwrite) + informe diário (captação, patrimônio líquido, rentabilidade)
 - Formato: CSV/ZIP público
-- Cobertura: ano de 2024 (~6.5M linhas no informe diário) — sem histórico plurianual
+- Cobertura: 2024–2026 (~15.9M linhas no informe diário); backfill retroativo aplicado em jul/2026 para fechar gap de 16 meses (jan/2025–abr/2026) causado por ausencia de reexecucao da carga historica apos 2024
 - Tabela Gold principal: gold_cvm.fundo_mensal
 
 ## Stack Técnica

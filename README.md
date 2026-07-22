@@ -44,7 +44,7 @@ Plataformas financeiras de dados são o ambiente mais exigente para um Data Engi
 │  │  │ BRONZE           │    │    │  │ BRONZE                   │   │  │
 │  │  │ bronze_bcb.*     │    │    │  │ bronze_cvm.cadastro       │   │  │
 │  │  │ 14k+ registros   │    │    │  │ bronze_cvm.informe_diario │   │  │
-│  │  │ backfill desde   │    │    │  │ 6.5M rows (2024)          │   │  │
+│  │  │ backfill desde   │    │    │  │ 15.9M rows (2024–2026)  │   │  │
 │  │  │ 1994–2000        │    │    │  │                          │   │  │
 │  │  └────────┬─────────┘    │    │  └──────────┬───────────────┘   │  │
 │  │           │ dbt          │    │             │ dbt               │  │
@@ -87,7 +87,7 @@ O BCB e a CVM são fontes independentes com contratos diferentes, frequências d
 A análise mais valiosa da plataforma — comparar a rentabilidade de fundos de investimento com o benchmark macroeconômico (SELIC, IPCA) — exige dados dos dois domínios. O cross-domain acontece apenas na camada Gold, que é a camada de consumo, preservando a independência das camadas inferiores.
 
 **Por que PostgreSQL em todas as camadas?**
-Consistência de stack. O Metabase conecta nativamente, o Airflow usa o mesmo banco como metadata store, e a complexidade operacional fica mínima. Para o volume desta plataforma (~7M rows), PostgreSQL entrega performance mais que suficiente sem introduzir complexidade de um lakehouse distribuído.
+Consistência de stack. O Metabase conecta nativamente, o Airflow usa o mesmo banco como metadata store, e a complexidade operacional fica mínima. Para o volume desta plataforma (~17M rows), PostgreSQL entrega performance mais que suficiente sem introduzir complexidade de um lakehouse distribuído.
 
 **Por que dbt para transformações?**
 Rastreabilidade e testabilidade. Cada transformação Silver → Gold é um modelo SQL versionado com testes declarativos. O `dbt docs` gera a linhagem de dados automaticamente — algo que pipelines Python avulsos não entregam.
@@ -113,7 +113,7 @@ API pública: `https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados`
 | Fonte | Dados | Volume |
 |---|---|---|
 | Cadastro de fundos | 41.107 fundos (todos os tipos, todas as situações) | Snapshot atual |
-| Informe diário 2024 | Cota, PL, captação, resgates, cotistas | 6.514.571 registros |
+| Informe diário 2024–2026 | Cota, PL, captação, resgates, cotistas | 15.887.278 registros |
 
 Portal público: `https://dados.cvm.gov.br/`
 
@@ -184,16 +184,18 @@ O schema do informe mudou em 2024 (campo `CNPJ_FUNDO_CLASSE`). O loader normaliz
 DAG `dag_silver_cvm` · depende do Bronze CVM
 
 - `silver_cvm.fundos` — universo de fundos operacionais: `EM FUNCIONAMENTO NORMAL` + `EM LIQUIDAÇÃO`. Fundos cancelados (maioria do histórico desde os anos 90) ficam fora.
-- `silver_cvm.informe` — série temporal limpa com tipos corretos e valores validados. JOIN com cadastro feito aqui — fundos sem match no cadastro são marcados como `fundo_sem_cadastro` mas não descartados (dado real tem gaps).
+- `silver_cvm.informe_diario` — série temporal limpa com tipos corretos e valores validados. JOIN com cadastro feito aqui — fundos sem match no cadastro são marcados como `fundo_sem_cadastro` mas não descartados (dado real tem gaps).
 
 **Gold** — `schema: gold_cvm`
 
 DAG `dag_gold_cvm` · depende de `dag_silver_cvm` e `dag_gold_bcb` (paralelos)
 
-- `fundo_diario` — 6.514.571 rows. Rentabilidade diária via LAG na cota. `NUMERIC(20,6)` para cobrir outliers extremos de fundos que começam com cota próxima de zero.
-- `fundo_mensal` — 312.772 rows. Agrega o informe diário por mês: PL médio, captação líquida, rentabilidade mensal. Cross-domain: `alpha_selic` e `alpha_ipca` calculados via JOIN com `gold_bcb.macro_mensal`.
+- `fundo_diario` — 15.887.278 rows. Rentabilidade diária via LAG na cota. `NUMERIC(20,6)` para cobrir outliers extremos de fundos que começam com cota próxima de zero.
+- `fundo_mensal` — 770.776 rows. Agrega o informe diário por mês: PL médio, captação líquida, rentabilidade mensal. Cross-domain: `alpha_selic` e `alpha_ipca` calculados via JOIN com `gold_bcb.macro_mensal`.
 
 > Três bugs reais descobertos e corrigidos no build: `COUNT(DISTINCT)` não existe como window function no PostgreSQL (solução: CTE separada), overflow em `NUMERIC` para rentabilidades extremas e `tp_fundo` no `GROUP BY` quebrando para CNPJs que mudam de tipo no mês.
+>
+> Em produção (julho/2026), uma auditoria de ponta a ponta identificou um gap de 16 meses (jan/2025–abr/2026) no Bronze CVM: o job mensal de ingestão nunca faz backfill retroativo por design, e a carga histórica dedicada nunca foi reexecutada após 2024. Corrigido via `make cvm-hist-load START_YEAR=2025 END_YEAR=2026` + `dbt run --full-refresh`.
 
 ---
 
@@ -218,9 +220,9 @@ Panorama do universo de fundos de investimento ativos.
 | Card | Descrição |
 |---|---|
 | Total de fundos ativos | Contagem por situação |
-| Distribuição por tipo de fundo | AÇÕES, RENDA FIXA, MULTIMERCADO... |
+| Distribuição por tipo de fundo | FI, CLASSES - FIF, FAPI, CLASSE FIF/FAPI (taxonomia pós-reforma CVM 2025) |
 | PL total por tipo | Patrimônio Líquido agregado |
-| Evolução do PL total | Série mensal 2024 |
+| Evolução do PL total | Série mensal 2024–2026 |
 
 **Dashboard 2 — Rentabilidade**
 
@@ -228,7 +230,7 @@ Ranking e análise de performance dos fundos vs. benchmarks.
 
 | Card | Descrição |
 |---|---|
-| Top 10 fundos por rentabilidade acumulada 2024 | Ranking anual |
+| Top 10 fundos por rentabilidade | Ranking histórico (2024–2026) |
 | Distribuição de alpha vs. SELIC | Histograma |
 | Distribuição de alpha vs. IPCA | Histograma |
 | Alpha médio por tipo de fundo | Barras comparativas |
@@ -240,7 +242,7 @@ Comparação direta dos fundos com os benchmarks BCB.
 
 | Card | Descrição |
 |---|---|
-| Captação líquida mensal por tipo | Fluxo de capital 2024 |
+| Captação líquida mensal por tipo | Fluxo de capital 2024–2026 |
 | Rentabilidade média por tipo vs. SELIC | Linha dupla |
 | Rentabilidade média por tipo vs. IPCA | Linha dupla |
 | Top 10 fundos por PL médio | Ranking patrimonial |
@@ -384,7 +386,7 @@ Você verá 7 DAGs disponíveis. Ative-as na seguinte ordem para garantir as dep
 7. dag_gold_cvm            → aguardar conclusão
 ```
 
-> A primeira execução das DAGs BCB faz backfill histórico completo (SELIC desde 2000, IPCA desde 1994, PTAX desde 1999). A DAG de informe CVM baixa o mês anterior da CVM — ~6.5M registros.
+> A primeira execução das DAGs BCB faz backfill histórico completo (SELIC desde 2000, IPCA desde 1994, PTAX desde 1999). A DAG de informe CVM (`@monthly`) baixa apenas o mês anterior a cada execução (~500-600k registros); o histórico completo (2024–2026, 15.9M registros) é carregado separadamente via `make cvm-hist-load START_YEAR=<ano> END_YEAR=<ano>`.
 
 ### 6. Configure os dashboards Metabase (opcional)
 
@@ -433,11 +435,11 @@ finlake (database)
 │
 ├── silver_cvm          # Dados CVM limpos (dbt)
 │   ├── fundos
-│   └── informe
+│   └── informe_diario
 │
 └── gold_cvm            # Métricas de fundos + cross-domain (dbt)
-    ├── fundo_diario    # ~6.5M rows
-    └── fundo_mensal    # ~312k rows
+    ├── fundo_diario    # ~15.9M rows
+    └── fundo_mensal    # ~771k rows
 ```
 
 ---
@@ -474,11 +476,11 @@ Essa abordagem produz documentação de raciocínio arquitetural — não apenas
 - [x] SILVER_CVM — Universo de fundos limpo e validado
 - [x] GOLD_CVM — Rentabilidade, alpha SELIC/IPCA, cross-domain BCB×CVM
 - [x] METABASE_CVM — 3 dashboards, 13 cards analíticos
+- [x] AI Engineering Layer — agente conversacional Text-to-SQL ([finlake-ai-analyst](https://github.com/niltontac/finlake-ai-analyst)), eval suite em 100%
 
 ### Próximas features 🚀
-- [ ] AI Engineering Layer — agentes de análise financeira sobre os dados Gold
 - [ ] Data Quality Monitoring — alertas automáticos via dbt e Airflow
-- [ ] Historical CVM — expansão do informe para anos anteriores a 2024
+- [ ] Historical CVM — expansão do informe para anos anteriores a 2024 (2000–2023)
 
 ---
 
