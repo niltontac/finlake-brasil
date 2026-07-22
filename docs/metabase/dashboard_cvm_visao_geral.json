@@ -1,7 +1,7 @@
 {
     "description": null,
     "archived": false,
-    "view_count": 3,
+    "view_count": 9,
     "collection_position": null,
     "dashcards": [
         {
@@ -15,7 +15,7 @@
                 "cache_invalidated_at": null,
                 "description": null,
                 "archived": false,
-                "view_count": 3,
+                "view_count": 12,
                 "collection_position": null,
                 "source_card_id": null,
                 "table_id": null,
@@ -46,12 +46,12 @@
                             },
                             "type": {
                                 "type/Number": {
-                                    "min": 26474.0,
-                                    "q1": 26474.0,
-                                    "q3": 26474.0,
-                                    "max": 26474.0,
+                                    "min": 31070.0,
+                                    "q1": 31070.0,
+                                    "q3": 31070.0,
+                                    "max": 31070.0,
                                     "sd": null,
-                                    "avg": 26474.0
+                                    "avg": 31070.0
                                 }
                             }
                         },
@@ -69,10 +69,10 @@
                 "download_perms": "full",
                 "name": "Fundos com dados suficientes",
                 "document_id": null,
-                "last_used_at": "2026-05-01T21:40:16.428237-03:00",
+                "last_used_at": "2026-07-08T02:56:47.957051-03:00",
                 "type": "question",
                 "dimensions": null,
-                "query_average_duration": 195,
+                "query_average_duration": 159,
                 "creator_id": 1,
                 "moderation_reviews": [],
                 "updated_at": "2026-05-01T21:34:06.33744-03:00",
@@ -127,7 +127,7 @@
                 "cache_invalidated_at": null,
                 "description": null,
                 "archived": false,
-                "view_count": 3,
+                "view_count": 9,
                 "collection_position": null,
                 "source_card_id": null,
                 "table_id": null,
@@ -153,13 +153,13 @@
                         "display_name": "ano_mes",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 12,
+                                "distinct-count": 30,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/DateTime": {
                                     "earliest": "2024-01-01",
-                                    "latest": "2024-12-01"
+                                    "latest": "2026-06-01"
                                 }
                             }
                         },
@@ -186,7 +186,7 @@
                         "display_name": "tp_fundo",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 3,
+                                "distinct-count": 4,
                                 "nil%": 0.0
                             },
                             "type": {
@@ -195,7 +195,7 @@
                                     "percent-url": 0.0,
                                     "percent-email": 0.0,
                                     "percent-state": 0.0,
-                                    "average-length": 4.111111111111111
+                                    "average-length": 7.27710843373494
                                 }
                             }
                         },
@@ -222,17 +222,17 @@
                         "display_name": "pl_total",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 27,
+                                "distinct-count": 83,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/Number": {
-                                    "min": 847656658.58409,
-                                    "q1": 871728745.7511507,
-                                    "q3": 11155633329975.98,
-                                    "max": 11758034040167.762,
-                                    "sd": 5398703568355.822,
-                                    "avg": 5079744746756.563
+                                    "min": 141931240.2025,
+                                    "q1": 893088380.2863122,
+                                    "q3": 10697122444096.508,
+                                    "max": 13655457854087.752,
+                                    "sd": 5359596078624.221,
+                                    "avg": 4437385510003.947
                                 }
                             }
                         },
@@ -250,10 +250,10 @@
                 "download_perms": "full",
                 "name": "PL total por tipo de fundo",
                 "document_id": null,
-                "last_used_at": "2026-05-01T21:40:16.428237-03:00",
+                "last_used_at": "2026-07-08T02:56:47.957051-03:00",
                 "type": "question",
                 "dimensions": null,
-                "query_average_duration": 155,
+                "query_average_duration": 163,
                 "creator_id": 1,
                 "moderation_reviews": [],
                 "updated_at": "2026-05-01T21:34:06.368029-03:00",
@@ -308,7 +308,7 @@
                 "cache_invalidated_at": null,
                 "description": null,
                 "archived": false,
-                "view_count": 3,
+                "view_count": 9,
                 "collection_position": null,
                 "source_card_id": null,
                 "table_id": null,
@@ -334,13 +334,13 @@
                         "display_name": "ano_mes",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 12,
+                                "distinct-count": 30,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/DateTime": {
                                     "earliest": "2024-01-01",
-                                    "latest": "2024-12-01"
+                                    "latest": "2026-06-01"
                                 }
                             }
                         },
@@ -367,17 +367,17 @@
                         "display_name": "captacao_total",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 12,
+                                "distinct-count": 30,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/Number": {
-                                    "min": -264808754341.51,
-                                    "q1": -93807099671.85,
-                                    "q3": 42499230123.979996,
+                                    "min": -233850584105.48,
+                                    "q1": -48829664922.39,
+                                    "q3": 37779656978.21,
                                     "max": 115065578114.99,
-                                    "sd": 101368109940.67757,
-                                    "avg": -24050465580.80917
+                                    "sd": 67002129616.36581,
+                                    "avg": -11241909336.709997
                                 }
                             }
                         },
@@ -395,10 +395,10 @@
                 "download_perms": "full",
                 "name": "Capta\u00e7\u00e3o l\u00edquida total por m\u00eas",
                 "document_id": null,
-                "last_used_at": "2026-05-01T21:40:16.428237-03:00",
+                "last_used_at": "2026-07-08T02:56:47.957051-03:00",
                 "type": "question",
                 "dimensions": null,
-                "query_average_duration": 155,
+                "query_average_duration": 156,
                 "creator_id": 1,
                 "moderation_reviews": [],
                 "updated_at": "2026-05-01T21:34:06.389205-03:00",
@@ -453,7 +453,7 @@
                 "cache_invalidated_at": null,
                 "description": null,
                 "archived": false,
-                "view_count": 3,
+                "view_count": 9,
                 "collection_position": null,
                 "source_card_id": null,
                 "table_id": null,
@@ -479,13 +479,13 @@
                         "display_name": "ano_mes",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 12,
+                                "distinct-count": 30,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/DateTime": {
                                     "earliest": "2024-01-01",
-                                    "latest": "2024-12-01"
+                                    "latest": "2026-06-01"
                                 }
                             }
                         },
@@ -512,7 +512,7 @@
                         "display_name": "tp_fundo",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 3,
+                                "distinct-count": 4,
                                 "nil%": 0.0
                             },
                             "type": {
@@ -521,7 +521,7 @@
                                     "percent-url": 0.0,
                                     "percent-email": 0.0,
                                     "percent-state": 0.0,
-                                    "average-length": 4.111111111111111
+                                    "average-length": 7.27710843373494
                                 }
                             }
                         },
@@ -548,17 +548,17 @@
                         "display_name": "cotistas_medio",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 26,
+                                "distinct-count": 79,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/Number": {
-                                    "min": 342.0,
-                                    "q1": 991.5,
-                                    "q3": 42427.75,
-                                    "max": 58788.0,
-                                    "sd": 21932.650848239235,
-                                    "avg": 19986.333333333332
+                                    "min": 5.0,
+                                    "q1": 988.52,
+                                    "q3": 42112.0,
+                                    "max": 118507.0,
+                                    "sd": 22881.22748122264,
+                                    "avg": 17622.963855421687
                                 }
                             }
                         },
@@ -576,10 +576,10 @@
                 "download_perms": "full",
                 "name": "N\u00ba m\u00e9dio de cotistas por tipo",
                 "document_id": null,
-                "last_used_at": "2026-05-01T21:40:16.428237-03:00",
+                "last_used_at": "2026-07-08T02:56:47.957051-03:00",
                 "type": "question",
                 "dimensions": null,
-                "query_average_duration": 148,
+                "query_average_duration": 158,
                 "creator_id": 1,
                 "moderation_reviews": [],
                 "updated_at": "2026-05-01T21:34:06.416263-03:00",
@@ -646,7 +646,7 @@
     "cache_ttl": null,
     "last_used_param_values": {},
     "id": 4,
-    "last_viewed_at": "2026-05-01T21:40:16.406609-03:00",
+    "last_viewed_at": "2026-07-08T02:56:47.94375-03:00",
     "position": null,
     "archived_directly": false,
     "entity_id": "wO4wedtwisdGplD4FD1Jv",

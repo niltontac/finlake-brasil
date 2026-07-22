@@ -1,7 +1,7 @@
 {
     "description": null,
     "archived": false,
-    "view_count": 0,
+    "view_count": 4,
     "collection_position": null,
     "dashcards": [
         {
@@ -15,49 +15,117 @@
                 "cache_invalidated_at": null,
                 "description": null,
                 "archived": false,
-                "view_count": 0,
+                "view_count": 3,
                 "collection_position": null,
                 "source_card_id": null,
                 "table_id": null,
                 "result_metadata": [
                     {
-                        "name": "date",
                         "database_type": "date",
-                        "base_type": "type/Date",
-                        "display_name": "date",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "date",
+                        "lib/original-name": "date",
+                        "name": "date",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "date",
+                        "source": "native",
                         "field_ref": [
                             "field",
                             "date",
                             {
                                 "base-type": "type/Date"
                             }
-                        ]
+                        ],
+                        "effective_type": "type/Date",
+                        "lib/desired-column-alias": "date",
+                        "display_name": "date",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 317,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/DateTime": {
+                                    "earliest": "2000-01-01",
+                                    "latest": "2026-05-01"
+                                }
+                            }
+                        },
+                        "base_type": "type/Date"
                     },
                     {
-                        "name": "taxa_anual",
                         "database_type": "numeric",
-                        "base_type": "type/Decimal",
-                        "display_name": "taxa_anual",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "taxa_anual",
+                        "lib/original-name": "taxa_anual",
+                        "name": "taxa_anual",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "taxa_anual",
+                        "source": "native",
                         "field_ref": [
                             "field",
                             "taxa_anual",
                             {
                                 "base-type": "type/Decimal"
                             }
-                        ]
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "taxa_anual",
+                        "display_name": "taxa_anual",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 238,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 1.8999,
+                                    "q1": 9.07545,
+                                    "q3": 15.023614306715938,
+                                    "max": 26.3191,
+                                    "sd": 4.878372883246894,
+                                    "avg": 12.329084542586752
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
                     },
                     {
-                        "name": "selic_real",
                         "database_type": "numeric",
-                        "base_type": "type/Decimal",
-                        "display_name": "selic_real",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "selic_real",
+                        "lib/original-name": "selic_real",
+                        "name": "selic_real",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "selic_real",
+                        "source": "native",
                         "field_ref": [
                             "field",
                             "selic_real",
                             {
                                 "base-type": "type/Decimal"
                             }
-                        ]
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "selic_real",
+                        "display_name": "selic_real",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 317,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": -4.8446,
+                                    "q1": 3.9320547086608615,
+                                    "q3": 9.644134790032172,
+                                    "max": 13.7325,
+                                    "sd": 3.994361229215366,
+                                    "avg": 6.126374132492113
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
                     }
                 ],
                 "embedding_type": null,
@@ -71,10 +139,10 @@
                 "download_perms": "full",
                 "name": "SELIC Real Historica",
                 "document_id": null,
-                "last_used_at": "2026-05-01T22:09:29.201283-03:00",
+                "last_used_at": "2026-07-07T18:21:12.123118-03:00",
                 "type": "question",
                 "dimensions": null,
-                "query_average_duration": null,
+                "query_average_duration": 78,
                 "creator_id": 1,
                 "moderation_reviews": [],
                 "updated_at": "2026-05-01T22:09:29.201283-03:00",
@@ -129,49 +197,117 @@
                 "cache_invalidated_at": null,
                 "description": null,
                 "archived": false,
-                "view_count": 0,
+                "view_count": 3,
                 "collection_position": null,
                 "source_card_id": null,
                 "table_id": null,
                 "result_metadata": [
                     {
-                        "name": "date",
                         "database_type": "date",
-                        "base_type": "type/Date",
-                        "display_name": "date",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "date",
+                        "lib/original-name": "date",
+                        "name": "date",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "date",
+                        "source": "native",
                         "field_ref": [
                             "field",
                             "date",
                             {
                                 "base-type": "type/Date"
                             }
-                        ]
+                        ],
+                        "effective_type": "type/Date",
+                        "lib/desired-column-alias": "date",
+                        "display_name": "date",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 317,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/DateTime": {
+                                    "earliest": "2000-01-01",
+                                    "latest": "2026-05-01"
+                                }
+                            }
+                        },
+                        "base_type": "type/Date"
                     },
                     {
-                        "name": "selic_anual",
                         "database_type": "numeric",
-                        "base_type": "type/Decimal",
-                        "display_name": "selic_anual",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "selic_anual",
+                        "lib/original-name": "selic_anual",
+                        "name": "selic_anual",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "selic_anual",
+                        "source": "native",
                         "field_ref": [
                             "field",
                             "selic_anual",
                             {
                                 "base-type": "type/Decimal"
                             }
-                        ]
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "selic_anual",
+                        "display_name": "selic_anual",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 238,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 1.8999,
+                                    "q1": 9.07545,
+                                    "q3": 15.023614306715938,
+                                    "max": 26.3191,
+                                    "sd": 4.878372883246894,
+                                    "avg": 12.329084542586752
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
                     },
                     {
-                        "name": "ipca_12m",
                         "database_type": "numeric",
-                        "base_type": "type/Decimal",
-                        "display_name": "ipca_12m",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "ipca_12m",
+                        "lib/original-name": "ipca_12m",
+                        "name": "ipca_12m",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "ipca_12m",
+                        "source": "native",
                         "field_ref": [
                             "field",
                             "ipca_12m",
                             {
                                 "base-type": "type/Decimal"
                             }
-                        ]
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "ipca_12m",
+                        "display_name": "ipca_12m",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 314,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 1.8775,
+                                    "q1": 4.463726800412303,
+                                    "q3": 7.2077689483233485,
+                                    "max": 17.2353,
+                                    "sd": 2.6865644498659673,
+                                    "avg": 6.202710410094636
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
                     }
                 ],
                 "embedding_type": null,
@@ -185,10 +321,10 @@
                 "download_perms": "full",
                 "name": "SELIC vs Inflacao",
                 "document_id": null,
-                "last_used_at": "2026-05-01T22:09:29.253331-03:00",
+                "last_used_at": "2026-07-07T18:21:12.123118-03:00",
                 "type": "question",
                 "dimensions": null,
-                "query_average_duration": null,
+                "query_average_duration": 78,
                 "creator_id": 1,
                 "moderation_reviews": [],
                 "updated_at": "2026-05-01T22:09:29.253331-03:00",
@@ -243,49 +379,117 @@
                 "cache_invalidated_at": null,
                 "description": null,
                 "archived": false,
-                "view_count": 0,
+                "view_count": 3,
                 "collection_position": null,
                 "source_card_id": null,
                 "table_id": null,
                 "result_metadata": [
                     {
-                        "name": "date",
                         "database_type": "date",
-                        "base_type": "type/Date",
-                        "display_name": "date",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "date",
+                        "lib/original-name": "date",
+                        "name": "date",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "date",
+                        "source": "native",
                         "field_ref": [
                             "field",
                             "date",
                             {
                                 "base-type": "type/Date"
                             }
-                        ]
+                        ],
+                        "effective_type": "type/Date",
+                        "lib/desired-column-alias": "date",
+                        "display_name": "date",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 317,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/DateTime": {
+                                    "earliest": "2000-01-01",
+                                    "latest": "2026-05-01"
+                                }
+                            }
+                        },
+                        "base_type": "type/Date"
                     },
                     {
-                        "name": "ptax_media",
                         "database_type": "numeric",
-                        "base_type": "type/Decimal",
-                        "display_name": "ptax_media",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "ptax_media",
+                        "lib/original-name": "ptax_media",
+                        "name": "ptax_media",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "ptax_media",
+                        "source": "native",
                         "field_ref": [
                             "field",
                             "ptax_media",
                             {
                                 "base-type": "type/Decimal"
                             }
-                        ]
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "ptax_media",
+                        "display_name": "ptax_media",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 315,
+                                "nil%": 0.0
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": 1.5639,
+                                    "q1": 2.0676270408163266,
+                                    "q3": 4.117278565849225,
+                                    "max": 6.097,
+                                    "sd": 1.3386505654447498,
+                                    "avg": 3.2119246056782336
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
                     },
                     {
-                        "name": "ptax_variacao_mensal_pct",
                         "database_type": "numeric",
-                        "base_type": "type/Decimal",
-                        "display_name": "ptax_variacao_mensal_pct",
+                        "semantic_type": null,
+                        "lib/deduplicated-name": "ptax_variacao_mensal_pct",
+                        "lib/original-name": "ptax_variacao_mensal_pct",
+                        "name": "ptax_variacao_mensal_pct",
+                        "lib/source": "source/native",
+                        "lib/source-column-alias": "ptax_variacao_mensal_pct",
+                        "source": "native",
                         "field_ref": [
                             "field",
                             "ptax_variacao_mensal_pct",
                             {
                                 "base-type": "type/Decimal"
                             }
-                        ]
+                        ],
+                        "effective_type": "type/Decimal",
+                        "lib/desired-column-alias": "ptax_variacao_mensal_pct",
+                        "display_name": "ptax_variacao_mensal_pct",
+                        "fingerprint": {
+                            "global": {
+                                "distinct-count": 317,
+                                "nil%": 0.003154574132492114
+                            },
+                            "type": {
+                                "type/Number": {
+                                    "min": -9.5216,
+                                    "q1": -2.0803563103610925,
+                                    "q3": 2.445037597571486,
+                                    "max": 20.7435,
+                                    "sd": 3.7918506465345176,
+                                    "avg": 0.3920990506329113
+                                }
+                            }
+                        },
+                        "base_type": "type/Decimal"
                     }
                 ],
                 "embedding_type": null,
@@ -299,10 +503,10 @@
                 "download_perms": "full",
                 "name": "PTAX Medio Mensal",
                 "document_id": null,
-                "last_used_at": "2026-05-01T22:09:29.42971-03:00",
+                "last_used_at": "2026-07-07T18:21:12.123118-03:00",
                 "type": "question",
                 "dimensions": null,
-                "query_average_duration": null,
+                "query_average_duration": 78,
                 "creator_id": 1,
                 "moderation_reviews": [],
                 "updated_at": "2026-05-01T22:09:29.42971-03:00",
@@ -369,7 +573,7 @@
     "cache_ttl": null,
     "last_used_param_values": {},
     "id": 7,
-    "last_viewed_at": "2026-05-01T22:09:29.457271-03:00",
+    "last_viewed_at": "2026-07-07T18:21:12.091127-03:00",
     "position": null,
     "archived_directly": false,
     "entity_id": "x0wyBYYxRWVrkulUF6Skv",

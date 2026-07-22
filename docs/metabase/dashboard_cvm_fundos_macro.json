@@ -1,7 +1,7 @@
 {
     "description": null,
     "archived": false,
-    "view_count": 2,
+    "view_count": 7,
     "collection_position": null,
     "dashcards": [
         {
@@ -15,7 +15,7 @@
                 "cache_invalidated_at": null,
                 "description": null,
                 "archived": false,
-                "view_count": 2,
+                "view_count": 6,
                 "collection_position": null,
                 "source_card_id": null,
                 "table_id": null,
@@ -41,13 +41,13 @@
                         "display_name": "ano_mes",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 12,
+                                "distinct-count": 29,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/DateTime": {
                                     "earliest": "2024-01-01",
-                                    "latest": "2024-12-01"
+                                    "latest": "2026-05-01"
                                 }
                             }
                         },
@@ -74,17 +74,17 @@
                         "display_name": "rent_media_mercado",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 12,
+                                "distinct-count": 29,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/Number": {
-                                    "min": -1.8621,
-                                    "q1": -0.8737999999999999,
-                                    "q3": 0.17975,
-                                    "max": 0.7619,
-                                    "sd": 0.7941039581589028,
-                                    "avg": -0.36879999999999996
+                                    "min": -1.7758,
+                                    "q1": -0.513075,
+                                    "q3": 0.7193750000000001,
+                                    "max": 2.143,
+                                    "sd": 0.9592089294286028,
+                                    "avg": 0.12413793103448269
                                 }
                             }
                         },
@@ -111,17 +111,17 @@
                         "display_name": "selic_mensal",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 9,
+                                "distinct-count": 19,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/Number": {
                                     "min": 0.8667,
-                                    "q1": 0.8698064755214563,
-                                    "q3": 0.9248000000000001,
-                                    "max": 0.9808,
-                                    "sd": 0.040510163333826885,
-                                    "avg": 0.9032666666666666
+                                    "q1": 0.9101374497553656,
+                                    "q3": 1.237155714092612,
+                                    "max": 1.2417,
+                                    "sd": 0.15982870857184528,
+                                    "avg": 1.0790586206896553
                                 }
                             }
                         },
@@ -139,10 +139,10 @@
                 "download_perms": "full",
                 "name": "Rentabilidade m\u00e9dia vs SELIC mensal",
                 "document_id": null,
-                "last_used_at": "2026-05-01T21:40:56.035206-03:00",
+                "last_used_at": "2026-07-08T03:01:49.719716-03:00",
                 "type": "question",
                 "dimensions": null,
-                "query_average_duration": 165,
+                "query_average_duration": 217,
                 "creator_id": 1,
                 "moderation_reviews": [],
                 "updated_at": "2026-05-01T21:34:06.573795-03:00",
@@ -194,10 +194,10 @@
             "action_id": null,
             "collection_authority_level": null,
             "card": {
-                "cache_invalidated_at": null,
+                "cache_invalidated_at": "2026-07-08T03:01:44.133983-03:00",
                 "description": null,
                 "archived": false,
-                "view_count": 2,
+                "view_count": 9,
                 "collection_position": null,
                 "source_card_id": null,
                 "table_id": null,
@@ -223,7 +223,7 @@
                         "display_name": "tp_fundo",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 3,
+                                "distinct-count": 4,
                                 "nil%": 0.0
                             },
                             "type": {
@@ -232,7 +232,7 @@
                                     "percent-url": 0.0,
                                     "percent-email": 0.0,
                                     "percent-state": 0.0,
-                                    "average-length": 6.333333333333333
+                                    "average-length": 8.5
                                 }
                             }
                         },
@@ -259,17 +259,17 @@
                         "display_name": "alpha_selic_medio",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 3,
+                                "distinct-count": 4,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/Number": {
-                                    "min": -1.4934,
-                                    "q1": -1.219225,
-                                    "q3": 37.483925,
-                                    "max": 50.1108,
-                                    "sd": 29.482208659856767,
-                                    "avg": 16.073566666666668
+                                    "min": -1.1291,
+                                    "q1": -0.9649,
+                                    "q3": -0.38815,
+                                    "max": -0.3541,
+                                    "sd": 0.36003826069831335,
+                                    "avg": -0.676525
                                 }
                             }
                         },
@@ -287,13 +287,13 @@
                 "download_perms": "full",
                 "name": "Alpha SELIC m\u00e9dio por categoria",
                 "document_id": null,
-                "last_used_at": "2026-05-01T21:40:56.035206-03:00",
+                "last_used_at": "2026-07-08T03:02:59.937387-03:00",
                 "type": "question",
                 "dimensions": null,
-                "query_average_duration": 129,
+                "query_average_duration": 196,
                 "creator_id": 1,
                 "moderation_reviews": [],
-                "updated_at": "2026-05-01T21:34:06.596601-03:00",
+                "updated_at": "2026-07-08T03:01:44.136595-03:00",
                 "made_public_by_id": null,
                 "embedding_params": null,
                 "cache_ttl": null,
@@ -303,7 +303,7 @@
                     "stages": [
                         {
                             "lib/type": "mbql.stage/native",
-                            "native": "SELECT tp_fundo, ROUND(AVG(alpha_selic)::numeric, 4) AS alpha_selic_medio\nFROM gold_cvm.fundo_mensal\nWHERE meses_com_dados >= 6 AND alpha_selic IS NOT NULL\nGROUP BY tp_fundo ORDER BY alpha_selic_medio DESC"
+                            "native": "SELECT tp_fundo, ROUND(AVG(alpha_selic)::numeric, 4) AS alpha_selic_medio\nFROM gold_cvm.fundo_mensal\nWHERE meses_com_dados >= 6 \n  AND alpha_selic IS NOT NULL \n  AND rentabilidade_mes_pct BETWEEN -1000 AND 1000\nGROUP BY tp_fundo ORDER BY alpha_selic_medio DESC"
                         }
                     ]
                 },
@@ -315,7 +315,15 @@
                 "archived_directly": false,
                 "entity_id": "U01G46y9-TyHAXijuvyBD",
                 "collection_preview": true,
-                "visualization_settings": {},
+                "visualization_settings": {
+                    "graph.x_axis.scale": "ordinal",
+                    "graph.dimensions": [
+                        "tp_fundo"
+                    ],
+                    "graph.metrics": [
+                        "alpha_selic_medio"
+                    ]
+                },
                 "metabase_version": "v0.60.2.5 (d9c91f2)",
                 "parameters": [],
                 "dashboard_id": null,
@@ -345,7 +353,7 @@
                 "cache_invalidated_at": null,
                 "description": null,
                 "archived": false,
-                "view_count": 3,
+                "view_count": 7,
                 "collection_position": null,
                 "source_card_id": null,
                 "table_id": null,
@@ -371,13 +379,13 @@
                         "display_name": "ano_mes",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 12,
+                                "distinct-count": 29,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/DateTime": {
                                     "earliest": "2024-01-01",
-                                    "latest": "2024-12-01"
+                                    "latest": "2026-05-01"
                                 }
                             }
                         },
@@ -404,17 +412,17 @@
                         "display_name": "pct_bateu_selic",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 12,
+                                "distinct-count": 29,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/Number": {
-                                    "min": 13.0,
-                                    "q1": 20.950000000000003,
-                                    "q3": 32.35,
+                                    "min": 8.0,
+                                    "q1": 20.65,
+                                    "q3": 49.324999999999996,
                                     "max": 74.7,
-                                    "sd": 17.62067484003328,
-                                    "avg": 30.149999999999995
+                                    "sd": 16.49375385581335,
+                                    "avg": 33.39655172413793
                                 }
                             }
                         },
@@ -432,10 +440,10 @@
                 "download_perms": "full",
                 "name": "% fundos que bateram a SELIC no m\u00eas",
                 "document_id": null,
-                "last_used_at": "2026-05-01T21:40:56.035206-03:00",
+                "last_used_at": "2026-07-08T03:01:49.719716-03:00",
                 "type": "question",
                 "dimensions": null,
-                "query_average_duration": 147,
+                "query_average_duration": 188,
                 "creator_id": 1,
                 "moderation_reviews": [],
                 "updated_at": "2026-05-01T21:34:06.616829-03:00",
@@ -490,7 +498,7 @@
                 "cache_invalidated_at": null,
                 "description": null,
                 "archived": false,
-                "view_count": 2,
+                "view_count": 6,
                 "collection_position": null,
                 "source_card_id": null,
                 "table_id": null,
@@ -516,13 +524,13 @@
                         "display_name": "ano_mes",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 12,
+                                "distinct-count": 29,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/DateTime": {
                                     "earliest": "2024-01-01",
-                                    "latest": "2024-12-01"
+                                    "latest": "2026-05-01"
                                 }
                             }
                         },
@@ -549,17 +557,17 @@
                         "display_name": "rent_media_mercado",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 12,
+                                "distinct-count": 29,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/Number": {
-                                    "min": -1.8621,
-                                    "q1": -0.8737999999999999,
-                                    "q3": 0.17975,
-                                    "max": 0.7619,
-                                    "sd": 0.7941039581589028,
-                                    "avg": -0.36879999999999996
+                                    "min": -1.7758,
+                                    "q1": -0.513075,
+                                    "q3": 0.7193750000000001,
+                                    "max": 2.143,
+                                    "sd": 0.9592089294286028,
+                                    "avg": 0.12413793103448269
                                 }
                             }
                         },
@@ -586,17 +594,17 @@
                         "display_name": "ipca_mensal",
                         "fingerprint": {
                             "global": {
-                                "distinct-count": 12,
+                                "distinct-count": 29,
                                 "nil%": 0.0
                             },
                             "type": {
                                 "type/Number": {
                                     "min": 0.3073,
-                                    "q1": 0.33975,
-                                    "q3": 0.38605,
-                                    "max": 0.4061,
-                                    "sd": 0.031471067761685595,
-                                    "avg": 0.3638416666666667
+                                    "q1": 0.354825,
+                                    "q3": 0.423,
+                                    "max": 0.4608,
+                                    "sd": 0.04220717259802192,
+                                    "avg": 0.38544482758620685
                                 }
                             }
                         },
@@ -614,10 +622,10 @@
                 "download_perms": "full",
                 "name": "IPCA 12m vs rentabilidade m\u00e9dia",
                 "document_id": null,
-                "last_used_at": "2026-05-01T21:40:56.035206-03:00",
+                "last_used_at": "2026-07-08T03:01:49.719716-03:00",
                 "type": "question",
                 "dimensions": null,
-                "query_average_duration": 171,
+                "query_average_duration": 222,
                 "creator_id": 1,
                 "moderation_reviews": [],
                 "updated_at": "2026-05-01T21:34:06.640909-03:00",
@@ -684,7 +692,7 @@
     "cache_ttl": null,
     "last_used_param_values": {},
     "id": 6,
-    "last_viewed_at": "2026-05-01T21:40:55.982728-03:00",
+    "last_viewed_at": "2026-07-08T03:01:49.645317-03:00",
     "position": null,
     "archived_directly": false,
     "entity_id": "u2Q_TBY4fQAB1ZjzsvnIk",
